@@ -1,0 +1,152 @@
+.ficha-producto {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-6);
+  padding-top: var(--s-3);
+}
+
+.ficha-producto__volver { align-self: flex-start; padding-left: 0; }
+
+.ficha-producto__principal {
+  display: flex;
+  gap: var(--s-6);
+}
+
+/* --- Galería: foto grande arriba, miniaturas en fila abajo, y la
+   descripción como pie de la galería (no de la info técnica) --- */
+.ficha-producto__galeria {
+  flex: 0 0 500px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+
+.ficha-producto__foto-grande {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+  background: var(--bg);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.ficha-producto__foto-grande img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+
+.ficha-producto__miniaturas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
+.ficha-producto__miniatura {
+  flex-shrink: 0;
+  width: 92px;
+  height: 92px;
+  border-radius: var(--r-sm);
+  border: 1.5px solid var(--line);
+  background: var(--bg);
+  padding: var(--s-1);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.ficha-producto__miniatura img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+.ficha-producto__miniatura--activa { border-color: var(--primary); }
+.ficha-producto__miniatura:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+
+.ficha-producto__agregar {
+  flex-shrink: 0;
+  width: 92px;
+  height: 92px;
+  border-radius: var(--r-sm);
+  border: 1.5px dashed var(--line);
+  background: var(--bg);
+  color: var(--ink-3);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+.ficha-producto__agregar:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-soft); }
+.ficha-producto__agregar:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+
+.ficha-producto__descripcion {
+  font: var(--t-body);
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: var(--ink-2);
+  margin: 0;
+}
+
+/* --- Info --- */
+.ficha-producto__info { flex: 1; min-width: 0; padding-top: var(--s-2); }
+.ficha-producto__info h1 { font: var(--t-h1); margin: var(--s-2) 0 0; }
+
+.ficha-producto__specs {
+  list-style: none;
+  margin: var(--s-5) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  font: var(--t-body);
+  font-size: 15.5px;
+  color: var(--ink);
+}
+.ficha-producto__specs li {
+  padding: var(--s-2) 0;
+  border-top: 1px solid var(--line);
+}
+
+.ficha-producto__uso {
+  font: var(--t-small);
+  color: var(--ink-3);
+  margin: var(--s-4) 0 0;
+}
+
+/* --- Ver también --- */
+.ficha-producto__relacionados { display: flex; flex-direction: column; gap: var(--s-4); }
+.ficha-producto__relacionados h2 { font: var(--t-h3); }
+
+.ficha-producto__relacionados-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--s-3);
+}
+
+.ficha-producto__relacionado {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+.ficha-producto__relacionado:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; border-radius: var(--r-md); }
+
+.ficha-producto__relacionado-foto {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  background: var(--bg);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+.ficha-producto__relacionado:hover .ficha-producto__relacionado-foto { border-color: var(--primary); }
+.ficha-producto__relacionado-foto img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+
+.ficha-producto__relacionado p { font: var(--t-small); font-size: 14px; margin: 0; color: var(--ink); }
+
+@media (max-width: 900px) {
+  .ficha-producto__principal { flex-direction: column; }
+  .ficha-producto__galeria { flex-basis: auto; }
+  .ficha-producto__relacionados-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .ficha-producto__relacionados-grid { grid-template-columns: 1fr 1fr; }
+}

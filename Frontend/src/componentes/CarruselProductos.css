@@ -1,0 +1,83 @@
+.carrusel-productos__fila {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+
+.carrusel-productos__flecha {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink-2);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+.carrusel-productos__flecha:hover:not(:disabled) { background: var(--bg); }
+.carrusel-productos__flecha:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+.carrusel-productos__flecha:disabled { color: #C7C1B7; cursor: not-allowed; }
+
+.carrusel-productos__ventana {
+  flex: 1;
+  overflow: hidden;
+  border-radius: var(--r-md);
+}
+
+.carrusel-productos__pista {
+  display: flex;
+  transition: transform 0.35s ease;
+}
+
+.carrusel-productos__tarjeta {
+  flex: 0 0 calc(100% / 3);
+  padding: 0 var(--s-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+}
+.carrusel-productos__tarjeta:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; border-radius: var(--r-md); }
+
+/* Caja blanca, sin borde en reposo; al pasar el mouse toma el azul
+   principal, para que se note que la foto es "clickeable". */
+.carrusel-productos__foto-envoltorio {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--r-md);
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+.carrusel-productos__tarjeta:hover .carrusel-productos__foto-envoltorio { border-color: var(--primary); }
+
+.carrusel-productos__foto {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.carrusel-productos__nombre {
+  font: var(--t-ui);
+  font-size: 15.5px;
+  color: var(--ink);
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  .carrusel-productos__tarjeta { flex: 0 0 calc(100% / 2); }
+}
+
+@media (max-width: 480px) {
+  .carrusel-productos__tarjeta { flex: 0 0 100%; }
+}

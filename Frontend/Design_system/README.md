@@ -131,6 +131,28 @@ con ícono de cámara y borde punteado; si ya tiene una (por ahora, 3 fotos de
 ejemplo puestas a mano en `datos/simulados.js`, todavía no hay subida real
 conectada a esta pantalla), se muestra ahí adentro con borde sólido.
 
+### Vista "Tu información"
+Título de cada sección **afuera** de su tarjeta (mismo patrón que "Tus
+campañas" en el Home: rótulo + acción a la derecha, la tarjeta blanca es
+un bloque aparte debajo). Orden de las secciones, de más a menos crítico
+para armar una campaña: Datos del negocio → Visión de marca → Mis
+productos → Catálogo y conexiones (esta última al final: es la más
+técnica y la que menos hace falta mirar seguido).
+
+**Visión de marca**: la foto del equipo va grande y a la izquierda — es
+lo primero que se lee del bloque, para que la sección no se sienta
+genérica. El texto es aspiracional, no descriptivo (eso ya lo cubre
+"Datos del negocio").
+
+**Mis productos**: el carrusel en esta pantalla muestra solo foto y
+nombre, hasta 3 productos a la vez — es una vidriera rápida, no el
+detalle. No da la vuelta al llegar al final (no tiene sentido "volver"
+al primer producto pasando por el último). Tocar un producto lleva a su
+**ficha técnica** (foto grande + miniaturas — repetidas por ahora, es
+una sola foto por producto — specs y productos relacionados). "Ver
+todos" abre un listado completo con buscador y orden (más reciente, más
+utilizado, alfabético).
+
 ### Bloque de texto — copy y T&C
 Blanco sólido, barrita azul a la izquierda, ancho limitado a `--lectura`,
 botones de copiar y editar al pie. **Es el componente más importante del

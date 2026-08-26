@@ -12,7 +12,7 @@ const MENU = [
    barra lateral a la izquierda, barra superior arriba, contenido en el medio.
    Solo "Home" navega de verdad por ahora — el resto de las pantallas
    todavía no existen, quedan como referencia visual del menú completo. */
-export default function Layout({ activa = 'home', onIrHome, pantallaCompleta = false, children }) {
+export default function Layout({ activa = 'home', onIrHome, onIrInfo, pantallaCompleta = false, children }) {
   return (
     <div className="layout">
       <aside className="lateral">
@@ -26,7 +26,11 @@ export default function Layout({ activa = 'home', onIrHome, pantallaCompleta = f
                 'lateral__item' + (item.id === activa ? ' lateral__item--activo' : '')
               }
               aria-current={item.id === activa ? 'page' : undefined}
-              onClick={item.id === 'home' ? onIrHome : undefined}
+              onClick={
+                item.id === 'home' ? onIrHome
+                : item.id === 'info' ? onIrInfo
+                : undefined
+              }
             >
               {item.etiqueta}
             </button>

@@ -54,6 +54,11 @@ button { font-family: var(--font); }
 .btn--fantasma { background: transparent; color: var(--ink-2); }
 .btn--fantasma:hover { background: #EFEBE5; }
 
+/* Como fantasma, pero en el azul principal — para acciones que son,
+   en los hechos, un link ("Ver todos", "Ver todas"). */
+.btn--enlace { background: transparent; color: var(--primary); }
+.btn--enlace:hover { background: var(--primary-soft); }
+
 .btn:disabled {
   background: #EDEAE5;
   color: #A9B2B4;
@@ -81,9 +86,11 @@ button { font-family: var(--font); }
   border-radius: var(--r-pill);
   white-space: nowrap;
 }
-.chip--borrador { background: var(--accent-soft); color: var(--accent-ink); }
-.chip--activa   { background: var(--mint);        color: #14574A; }
-.chip--lista    { background: var(--sky);         color: #1B4A70; }
+.chip--borrador   { background: var(--accent-soft); color: var(--accent-ink); }
+.chip--activa     { background: var(--mint);        color: #14574A; }
+.chip--lista      { background: var(--sky);         color: #1B4A70; }
+.chip--conectado  { background: var(--mint);        color: #14574A; }
+.chip--pendiente  { background: var(--bg);          color: var(--ink-3); }
 
 /* --- Recuadro para foto de campaña: ícono de cámara mientras no hay
    ninguna cargada (borde punteado); si la campaña ya tiene una foto

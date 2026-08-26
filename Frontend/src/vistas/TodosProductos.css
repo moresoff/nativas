@@ -1,0 +1,89 @@
+.todos-productos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+  padding-top: var(--s-3);
+}
+
+.todos-productos__encabezado { display: flex; flex-direction: column; gap: var(--s-2); align-items: flex-start; }
+.todos-productos__volver { padding-left: 0; }
+.todos-productos__encabezado h1 { font: var(--t-h1); }
+
+.todos-productos__controles {
+  display: flex;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+}
+
+.todos-productos__buscador {
+  flex: 1;
+  min-width: 220px;
+  font: var(--t-body);
+  font-size: 15.5px;
+  padding: 11px var(--s-4);
+  border-radius: var(--r-pill);
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+}
+.todos-productos__buscador::placeholder { color: var(--ink-3); }
+.todos-productos__buscador:focus-visible { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-soft); }
+
+.todos-productos__orden {
+  font: var(--t-ui);
+  font-size: 14.5px;
+  padding: 11px var(--s-4);
+  border-radius: var(--r-pill);
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+.todos-productos__orden:focus-visible { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-soft); }
+
+.todos-productos__vacio { font: var(--t-body); color: var(--ink-2); }
+
+.todos-productos__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s-5);
+}
+
+.todos-productos__item {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+.todos-productos__item:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; border-radius: var(--r-md); }
+
+.todos-productos__foto-envoltorio {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  background: var(--bg);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+.todos-productos__item:hover .todos-productos__foto-envoltorio { border-color: var(--primary); }
+.todos-productos__foto-envoltorio img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+
+.todos-productos__nombre { font: var(--t-ui); font-size: 15.5px; margin: 0; color: var(--ink); }
+.todos-productos__categoria { font: var(--t-small); color: var(--ink-3); margin: 0; }
+
+@media (max-width: 900px) {
+  .todos-productos__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 700px) {
+  .todos-productos__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .todos-productos__grid { grid-template-columns: 1fr; }
+}
