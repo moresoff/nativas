@@ -1,0 +1,23 @@
+.bloque-texto {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--primary);
+  border-radius: var(--r-sm);
+  padding: var(--s-5) var(--s-5) var(--s-4);
+  max-width: var(--lectura);
+}
+
+.bloque-texto__etiqueta { margin: 0 0 var(--s-3); }
+
+.bloque-texto__contenido {
+  font: var(--t-body);
+  color: var(--ink-2);
+  margin: 0;
+}
+
+.bloque-texto__acciones {
+  display: flex;
+  gap: var(--s-2);
+  margin-top: var(--s-4);
+}
+.bloque-texto__acciones .btn { padding: 6px 14px; }

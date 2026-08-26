@@ -1,0 +1,87 @@
+/* ============================================================
+   PAUTIA — Design System
+   Fuente única de verdad de los valores visuales del producto.
+   Aprobado por el equipo en la Clase 6.
+
+   Si algo visual se repite en más de una pantalla, su valor vive
+   acá y no escrito a mano dentro de un componente.
+   ============================================================ */
+
+:root {
+  /* --- Color: texto --- */
+  --ink:        #14213A;  /* títulos y texto principal */
+  --ink-2:      #4A5A72;  /* párrafos largos, texto secundario */
+  --ink-3:      #7E8CA3;  /* etiquetas, ayudas, texto deshabilitado */
+
+  /* --- Color: superficies --- */
+  --bg:         #FAF8F5;  /* fondo general, crema (no blanco puro) */
+  --surface:    #FFFFFF;  /* tarjetas y bloques de contenido */
+  --surface-2:  #F4F1EC;  /* zonas hundidas: fondo del chat */
+  --line:       #E7E2DB;  /* bordes y separadores */
+
+  /* --- Color: principal — azul --- */
+  --primary:        #0A59DA;  /* botones, links, burbuja del usuario, foco */
+  --primary-hover:  #0847AD;
+  --primary-soft:   #E3EBFC;  /* fondo suave del color principal */
+
+  /* --- Color: acento --- */
+  --accent:       #3B82F6;  /* detalles puntuales: alfiler del post-it, etc. */
+  --accent-soft:  #E8F1FE;
+  --accent-ink:   #1E40AF;  /* texto legible sobre accent-soft */
+
+  /* --- Color: pasteles de tarjetas de métrica --- */
+  --mint:   #DFF0EC;
+  --peach:  #FDE7DE;
+  --sand:   #F5EBD9;
+  --sky:    #E2EDF5;
+
+  /* --- Color: estados --- */
+  --ok:    #1E8A5F;
+  --warn:  #F59E0B;  /* ámbar — también el color de "revisar / atención" (T&C, legal) */
+  --err:   #C0392B;
+  --err-soft: #F7DDD9;
+
+  /* --- Color: post-it (sugerencias) --- */
+  --postit:      #FFE9A8;  /* papel */
+  --postit-pin:  var(--accent);  /* el "alfiler" */
+
+  /* --- Degradado del panel de resultados (un solo color, dos intensidades) --- */
+  --grad: linear-gradient(140deg, #0847AD, #0A59DA);
+
+  /* --- Vidrio claro sobre el panel de resultados (carrusel, azul marino) --- */
+  --vidrio-panel-bg:      rgba(255, 255, 255, 0.16);
+  --vidrio-panel-borde:   rgba(255, 255, 255, 0.32);
+
+  /* --- Verde / rojo legibles sobre fondos saturados (el panel azul, etc.) --- */
+  --ok-sobre-saturado:  #7CE7B8;
+  --err-sobre-saturado: #FFA99B;
+
+  /* --- Tipografía --- */
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --t-display: 800 40px/1.15 var(--font);  /* saludo del Home */
+  --t-h1:      700 32px/1.2  var(--font);
+  --t-h2:      700 24px/1.25 var(--font);
+  --t-h3:      600 19px/1.3  var(--font);
+  --t-body:    400 16px/1.65 var(--font);  /* copy, T&C, resúmenes */
+  --t-ui:      600 15px/1.4  var(--font);  /* botones y navegación */
+  --t-small:   400 14px/1.5  var(--font);
+  --t-label:   700 11px/1.4  var(--font);  /* mayúsculas con espaciado */
+
+  /* --- Espaciado: todo múltiplo de 4 --- */
+  --s-1: 4px;   --s-2: 8px;   --s-3: 12px;  --s-4: 16px;
+  --s-5: 24px;  --s-6: 32px;  --s-7: 48px;  --s-8: 64px;
+
+  /* --- Bordes y radios --- */
+  --r-sm:   8px;    /* campos de formulario, bloques de texto */
+  --r-md:   16px;   /* tarjetas */
+  --r-lg:   24px;   /* paneles grandes y vidrio */
+  --r-pill: 999px;  /* botones y chips */
+
+  /* --- Sombras --- */
+  --sh-1: 0 1px 2px rgba(20, 33, 58, .06), 0 2px 8px rgba(20, 33, 58, .04);
+  --sh-2: 0 4px 12px rgba(20, 33, 58, .08), 0 12px 32px rgba(20, 33, 58, .06);
+
+  /* --- Medida de lectura --- */
+  --lectura: 68ch;  /* ancho máximo de un párrafo largo */
+}

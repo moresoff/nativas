@@ -1,0 +1,141 @@
+/* Estilos base y componentes compartidos.
+   Todos los valores salen de Design_system/tokens.css */
+
+* { box-sizing: border-box; }
+
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: var(--t-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { margin: 0; letter-spacing: -0.02em; }
+
+button { font-family: var(--font); }
+
+.num { font-variant-numeric: tabular-nums; }
+
+/* --- Rótulo en mayúsculas --- */
+.rotulo {
+  font: var(--t-label);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+  margin: 0;
+}
+
+/* --- Botones --- */
+.btn {
+  font: var(--t-ui);
+  border-radius: var(--r-pill);
+  padding: 11px 22px;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.btn:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+.btn--principal { background: var(--primary); color: #fff; }
+.btn--principal:hover { background: var(--primary-hover); }
+
+.btn--secundario {
+  background: transparent;
+  color: var(--primary);
+  border-color: var(--primary);
+}
+.btn--secundario:hover { background: var(--primary-soft); }
+
+.btn--fantasma { background: transparent; color: var(--ink-2); }
+.btn--fantasma:hover { background: #EFEBE5; }
+
+.btn:disabled {
+  background: #EDEAE5;
+  color: #A9B2B4;
+  border-color: transparent;
+  cursor: not-allowed;
+}
+
+.btn--chico { font-size: 14px; padding: 8px 18px; }
+
+/* --- Tarjeta --- */
+.tarjeta {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: var(--s-5);
+  box-shadow: var(--sh-1);
+}
+
+/* --- Chip de estado --- */
+.chip {
+  display: inline-block;
+  font: var(--t-ui);
+  font-size: 13px;
+  padding: 5px 13px;
+  border-radius: var(--r-pill);
+  white-space: nowrap;
+}
+.chip--borrador { background: var(--accent-soft); color: var(--accent-ink); }
+.chip--activa   { background: var(--mint);        color: #14574A; }
+.chip--lista    { background: var(--sky);         color: #1B4A70; }
+
+/* --- Recuadro para foto de campaña: ícono de cámara mientras no hay
+   ninguna cargada (borde punteado); si la campaña ya tiene una foto
+   (simulada, sin subida real todavía) se muestra ahí adentro, con
+   borde sólido. --- */
+.foto-placeholder {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  border-radius: var(--r-sm);
+  border: 1.5px dashed var(--line);
+  background: var(--bg);
+  color: var(--ink-3);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.foto-placeholder--con-foto { border-style: solid; border-color: var(--line); }
+
+.foto-placeholder__img { width: 100%; height: 100%; object-fit: cover; }
+
+/* --- Chat --- */
+.burbuja-usuario {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 18px 18px 4px 18px;
+  padding: 12px 18px;
+  max-width: 72%;
+  margin-left: auto;
+  font: var(--t-body);
+  font-size: 15px;
+}
+
+.burbuja-sistema {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px 18px 18px 4px;
+  padding: 12px 18px;
+  max-width: 80%;
+  box-shadow: var(--sh-1);
+  font: var(--t-body);
+  font-size: 15px;
+  color: var(--ink);
+}
+
+/* --- Efecto vidrio --- */
+.vidrio {
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-2);
+}

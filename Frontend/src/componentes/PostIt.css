@@ -1,0 +1,51 @@
+.postit {
+  position: relative;
+  background: var(--postit);
+  border-radius: var(--r-sm);
+  padding: var(--s-6) var(--s-5) var(--s-5);
+  min-height: 168px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  transform: rotate(var(--giro));
+  box-shadow: 0 6px 16px rgba(20, 33, 58, 0.14);
+  transition: transform 0.15s ease;
+}
+.postit:hover { transform: rotate(0deg); }
+
+.postit__pin {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--postit-pin);
+  box-shadow: 0 2px 4px rgba(20, 33, 58, 0.3);
+}
+
+.postit h3 {
+  font: var(--t-h3);
+  color: var(--ink);
+}
+
+.postit p {
+  font: var(--t-small);
+  color: var(--ink-2);
+  margin: 0;
+  flex-grow: 1;
+}
+
+.postit__cta {
+  align-self: flex-start;
+  background: none;
+  border: 0;
+  padding: 0;
+  font: var(--t-ui);
+  font-size: 14px;
+  color: var(--primary);
+  cursor: pointer;
+}
+.postit__cta:hover { color: var(--primary-hover); }
+.postit__cta:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }

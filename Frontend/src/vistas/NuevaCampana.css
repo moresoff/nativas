@@ -1,0 +1,281 @@
+/* La vista ocupa toda la altura disponible de la pantalla (la da
+   .contenido--pantalla-completa en Layout.css). Dos columnas: el
+   historial de conversaciones a la izquierda y el chat a la derecha,
+   sin ningún recuadro separado — el chat es la pantalla, no una
+   tarjeta más adentro de ella. */
+.chat-layout {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  width: 100%;
+}
+
+/* --- Historial de conversaciones --- */
+.chat-historial {
+  flex: 0 0 240px;
+  min-height: 0;
+  background: var(--surface-2);
+  border-right: 1px solid var(--line);
+  padding: var(--s-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+
+.chat-historial__nueva { width: 100%; justify-content: center; }
+
+.chat-historial__actual {
+  font: var(--t-ui);
+  font-size: 14px;
+  color: var(--primary);
+  background: var(--primary-soft);
+  border-radius: var(--r-sm);
+  padding: var(--s-2) var(--s-3);
+}
+
+.chat-historial__etiqueta { margin: 0; }
+
+.chat-historial__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+}
+
+.chat-historial__item {
+  font: var(--t-small);
+  color: var(--ink-2);
+  padding: var(--s-2) var(--s-3);
+  border-radius: var(--r-sm);
+}
+
+.chat-historial__pista {
+  font: var(--t-small);
+  font-size: 12.5px;
+  color: var(--ink-3);
+  margin: 0;
+}
+
+/* --- Chat --- */
+.chat-vista {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 var(--s-6);
+}
+
+.chat-vista__encabezado {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  flex-shrink: 0;
+  padding: var(--s-3) 0;
+}
+
+.chat-vista__volver { flex-shrink: 0; padding-left: 0; }
+
+.chat-vista__nombre {
+  font: var(--t-h3);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: var(--s-1) var(--s-2);
+  border-radius: var(--r-sm);
+}
+.chat-vista__nombre:hover { background: var(--bg); }
+.chat-vista__nombre svg { color: var(--ink-3); flex-shrink: 0; }
+.chat-vista__nombre:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+
+.chat-vista__nombre-campo {
+  font: var(--t-h3);
+  border: 1.5px solid var(--primary);
+  border-radius: var(--r-sm);
+  padding: var(--s-1) var(--s-2);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.chat-vista__mensajes {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding: var(--s-2) var(--s-1) var(--s-4);
+}
+
+.chat-vista__accion { align-self: flex-start; flex-shrink: 0; }
+
+.fotos-miniaturas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin: var(--s-2) 0;
+}
+.fotos-miniaturas__img {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: var(--r-sm);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+.burbuja-usuario--fotos { max-width: 88%; }
+
+.chat-vista__resultado-titulo { font: var(--t-ui); font-size: 14.5px; margin: 0 0 var(--s-1); }
+
+.chat-vista__nota-simulada {
+  font: var(--t-small);
+  font-size: 12.5px;
+  font-style: italic;
+  color: var(--ink-3);
+  margin: var(--s-1) 0 0;
+}
+
+/* --- Tarjeta de opciones: ancla arriba del campo de escribir, fuera
+   del scroll de mensajes. Así los mensajes ya enviados no se mueven
+   de lugar y las opciones vigentes siempre quedan a mano. --- */
+.chat-vista__tarjeta-anclada {
+  flex-shrink: 0;
+  padding-top: var(--s-3);
+}
+
+.opciones-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-1);
+  padding: var(--s-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+}
+
+.opciones-card__lista {
+  display: flex;
+  flex-direction: column;
+}
+
+.opciones-card__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  font: var(--t-ui);
+  font-size: 14.5px;
+  text-align: left;
+  background: none;
+  border: 0;
+  border-radius: var(--r-sm);
+  color: var(--ink);
+  padding: 10px var(--s-3);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.opciones-card__item:hover { background: var(--primary-soft); color: var(--primary); }
+.opciones-card__item:focus-visible { outline: 3px solid var(--primary); outline-offset: -2px; }
+.opciones-card__item + .opciones-card__item { border-top: 1px solid var(--line); }
+
+.opciones-card__num {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--r-sm);
+  background: var(--bg);
+  color: var(--ink-3);
+  font: var(--t-label);
+  font-size: 12px;
+  display: grid;
+  place-items: center;
+}
+.opciones-card__item:hover .opciones-card__num { background: var(--primary-soft); color: var(--primary); }
+
+.opciones-card__item--saltear { color: var(--ink-3); font-style: italic; }
+.opciones-card__item--saltear:hover { background: var(--bg); color: var(--ink-2); }
+
+.opciones-card__pista {
+  font: var(--t-small);
+  font-size: 12.5px;
+  color: var(--ink-3);
+  margin: var(--s-1) var(--s-3) 0;
+}
+
+.opciones-card--subir { align-items: flex-start; gap: var(--s-2); padding: var(--s-3); }
+.opciones-card__pista--activa { margin: 0; color: var(--ink-2); }
+
+.chat-vista__input {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  flex-shrink: 0;
+  padding: var(--s-4) 0;
+  border-top: 1px solid var(--line);
+}
+
+.chat-vista__adjuntar {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-pill);
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  color: var(--ink-2);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+.chat-vista__adjuntar:hover:not(:disabled) { border-color: var(--primary); color: var(--primary); background: var(--primary-soft); }
+.chat-vista__adjuntar:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+.chat-vista__adjuntar:disabled { color: #C7C1B7; border-color: var(--line); cursor: not-allowed; }
+
+.chat-vista__campo {
+  flex: 1;
+  font: var(--t-body);
+  font-size: 15px;
+  padding: 13px 20px;
+  border-radius: var(--r-pill);
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+}
+.chat-vista__campo::placeholder { color: var(--ink-3); }
+.chat-vista__campo:focus-visible { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-soft); }
+.chat-vista__campo:disabled { background: var(--bg); color: var(--ink-3); cursor: not-allowed; }
+
+.chat-vista__enviar {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-pill);
+  border: 0;
+  background: var(--primary);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.chat-vista__enviar:hover:not(:disabled) { background: var(--primary-hover); }
+.chat-vista__enviar:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+.chat-vista__enviar:disabled { background: #D9D4CC; color: #A9B2B4; cursor: not-allowed; }
+
+.chat-vista__ejemplo { align-self: flex-start; flex-shrink: 0; margin-bottom: var(--s-4); }
+
+@media (max-width: 900px) {
+  .chat-historial { display: none; }
+}
+
+@media (max-width: 700px) {
+  .chat-vista { padding: 0 var(--s-4); }
+  .burbuja-usuario, .burbuja-sistema { max-width: 88%; }
+}

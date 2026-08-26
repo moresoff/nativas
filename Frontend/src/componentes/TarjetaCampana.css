@@ -1,0 +1,49 @@
+.tarjeta-campana {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-5);
+}
+
+.tarjeta-campana__texto { flex: 1; min-width: 0; }
+
+.tarjeta-campana__texto h3 { font: var(--t-h3); margin: 0; }
+
+.tarjeta-campana__detalle {
+  font: var(--t-small);
+  color: var(--ink-2);
+  margin: var(--s-2) 0 0;
+}
+
+/* --- Estado: última jerarquía, un punto de color en vez de una etiqueta --- */
+.tarjeta-campana__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  font: var(--t-small);
+  color: var(--ink-3);
+  margin: var(--s-2) 0 0;
+}
+
+.tarjeta-campana__separador { color: var(--line); }
+
+.estado-punto {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.estado-punto--activa   { background: var(--ok); }
+.estado-punto--lista    { background: var(--warn); }
+.estado-punto--borrador { background: var(--ink-3); }
+
+.tarjeta-campana .btn { flex-shrink: 0; }
+
+@media (max-width: 700px) {
+  .tarjeta-campana {
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: var(--s-4);
+  }
+  .tarjeta-campana .btn { width: 100%; order: 3; }
+}

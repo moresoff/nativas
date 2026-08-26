@@ -1,0 +1,150 @@
+.layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 100vh;
+}
+
+/* --- Barra lateral --- */
+.lateral {
+  background: var(--surface);
+  border-right: 1px solid var(--line);
+  padding: var(--s-5) var(--s-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.lateral__marca {
+  font: var(--t-h3);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--primary);
+  padding: var(--s-2) var(--s-3) var(--s-5);
+}
+
+.lateral__menu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+}
+
+.lateral__item {
+  font: var(--t-ui);
+  text-align: left;
+  background: transparent;
+  border: 0;
+  color: var(--ink-2);
+  padding: 11px var(--s-3);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.lateral__item:hover { background: var(--bg); color: var(--ink); }
+.lateral__item:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+
+.lateral__item--activo {
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-weight: 700;
+}
+.lateral__item--activo:hover { background: var(--primary-soft); color: var(--primary); }
+
+.lateral__item--pie { margin-top: auto; }
+
+/* --- Barra superior ---
+   Altura fija: la usan las vistas de pantalla completa para calcular
+   cuánto espacio vertical les queda disponible. */
+.superior {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 73px;
+  padding: 0 var(--s-7);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(250, 248, 245, 0.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.superior__acciones {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+
+.icono {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.icono:hover { background: var(--bg); }
+.icono:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+
+.perfil {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-pill);
+  border: 0;
+  background: var(--primary);
+  color: #fff;
+  font: var(--t-ui);
+  font-size: 14px;
+  cursor: pointer;
+}
+.perfil:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
+
+/* --- Contenido --- */
+.contenido {
+  padding: var(--s-4) var(--s-7) var(--s-8);
+  max-width: 1120px;
+}
+
+/* Vistas que necesitan ocupar toda la altura disponible, como el chat
+   (el mensajero scrollea adentro, el resto de la pantalla no se mueve). */
+.contenido--pantalla-completa {
+  max-width: none;
+  padding: 0;
+  height: calc(100vh - 73px);
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* --- Pantallas chicas ---
+   La barra lateral pasa a ser una fila horizontal arriba de todo.
+   Sigue siendo una web app: no es una aplicación mobile. */
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+
+  .lateral {
+    position: static;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--s-3);
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    padding: var(--s-3) var(--s-4);
+  }
+  .lateral__marca { padding: 0 var(--s-3) 0 0; }
+  .lateral__menu { flex-direction: row; }
+  .lateral__item { white-space: nowrap; }
+  .lateral__item--pie { margin-top: 0; }
+
+  .superior { height: auto; padding: var(--s-3) var(--s-4); }
+  .contenido { padding: var(--s-3) var(--s-4) var(--s-7); }
+  .contenido--pantalla-completa { padding: 0; height: auto; min-height: 0; overflow: visible; }
+}

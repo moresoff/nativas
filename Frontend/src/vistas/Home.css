@@ -1,0 +1,53 @@
+.home { display: flex; flex-direction: column; gap: var(--s-7); }
+
+/* --- Saludo --- */
+.home__saludo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-6);
+  padding-top: var(--s-3);
+}
+
+.home__saludo h1 { font: var(--t-display); }
+
+.home__bajada {
+  font: var(--t-body);
+  color: var(--ink-2);
+  max-width: var(--lectura);
+  margin: var(--s-3) 0 0;
+}
+
+.home__cta { flex-shrink: 0; }
+
+/* --- Secciones --- */
+.home__seccion { display: flex; flex-direction: column; gap: var(--s-4); }
+
+.home__titulo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+}
+.home__titulo h2 { font: var(--t-h2); }
+
+/* --- Listas --- */
+.home__lista { display: flex; flex-direction: column; gap: var(--s-3); }
+
+.home__sugerencias {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s-5);
+  padding-top: var(--s-2);
+}
+
+/* --- Pantallas chicas --- */
+@media (max-width: 900px) {
+  .home { gap: var(--s-6); }
+
+  .home__saludo { flex-direction: column; align-items: stretch; }
+  .home__saludo h1 { font-size: 30px; }
+  .home__cta { width: 100%; }
+
+  .home__sugerencias { grid-template-columns: 1fr; }
+}
