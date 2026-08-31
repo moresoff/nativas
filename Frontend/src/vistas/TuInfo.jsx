@@ -3,6 +3,7 @@ import {
   pyme as pymeInicial,
   visionMarca as visionInicial,
   fotoEquipoNegocio,
+  branding as brandingInicial,
   productos,
 } from '../datos/simulados'
 import CarruselProductos from '../componentes/CarruselProductos'
@@ -22,6 +23,11 @@ const CAMPOS = [
   { id: 'queVende', etiqueta: 'Qué vendés' },
   { id: 'tiempoActividad', etiqueta: 'Hace cuánto tiempo' },
   { id: 'aQuienLeVende', etiqueta: 'A quién le vendés' },
+]
+
+const CAMPOS_BRANDING = [
+  { id: 'tono', etiqueta: 'Tono de voz' },
+  { id: 'queEvitar', etiqueta: 'Qué evitar / clichés a evitar' },
 ]
 
 const CONEXIONES_INICIALES = [
@@ -50,6 +56,10 @@ export default function TuInfo() {
   const [vision, setVision] = useState(visionInicial)
   const [borradorVision, setBorradorVision] = useState(visionInicial)
   const [editandoVision, setEditandoVision] = useState(false)
+
+  const [branding, setBranding] = useState(brandingInicial)
+  const [borradorBranding, setBorradorBranding] = useState(brandingInicial)
+  const [editandoBranding, setEditandoBranding] = useState(false)
 
   const [pantalla, setPantalla] = useState('principal') // 'principal' | 'producto' | 'todos-productos'
   const [productoActivoId, setProductoActivoId] = useState(null)
@@ -96,6 +106,22 @@ export default function TuInfo() {
   const cancelarVision = () => {
     setBorradorVision(vision)
     setEditandoVision(false)
+  }
+
+  const empezarEdicionBranding = () => {
+    setBorradorBranding(branding)
+    setEditandoBranding(true)
+  }
+
+  const guardarBranding = (e) => {
+    e.preventDefault()
+    setBranding(borradorBranding)
+    setEditandoBranding(false)
+  }
+
+  const cancelarBranding = () => {
+    setBorradorBranding(branding)
+    setEditandoBranding(false)
   }
 
   const verProducto = (id) => {
@@ -224,15 +250,69 @@ export default function TuInfo() {
 
       <section className="tu-info__seccion">
         <div className="tu-info__seccion-titulo">
+          <h2>Branding</h2>
+          {!editandoBranding && (
+            <button type="button" className="btn btn--secundario btn--chico" onClick={empezarEdicionBranding}>
+              Editar
+            </button>
+          )}
+        </div>
+
+        <div className="tarjeta tu-info__card">
+          <p className="rotulo">Paleta de marca</p>
+          <div className="tu-info__paleta">
+            {branding.paleta.map((c) => (
+              <div key={c.hex} className="tu-info__swatch">
+                <span className="tu-info__swatch-color" style={{ background: c.hex }} aria-hidden="true" />
+                <p className="tu-info__swatch-nombre">{c.nombre}</p>
+                <p className="tu-info__swatch-hex">{c.hex}</p>
+              </div>
+            ))}
+          </div>
+
+          {editandoBranding ? (
+            <form className="tu-info__form" onSubmit={guardarBranding}>
+              {CAMPOS_BRANDING.map((campo) => (
+                <label key={campo.id} className="tu-info__campo">
+                  <span className="rotulo">{campo.etiqueta}</span>
+                  <textarea
+                    value={borradorBranding[campo.id]}
+                    onChange={(e) => setBorradorBranding({ ...borradorBranding, [campo.id]: e.target.value })}
+                    rows={3}
+                  />
+                </label>
+              ))}
+              <div className="tu-info__acciones">
+                <button type="button" className="btn btn--fantasma btn--chico" onClick={cancelarBranding}>
+                  Cancelar
+                </button>
+                <button type="submit" className="btn btn--principal btn--chico">
+                  Guardar cambios
+                </button>
+              </div>
+            </form>
+          ) : (
+            <dl className="tu-info__lista tu-info__lista--branding">
+              {CAMPOS_BRANDING.map((campo) => (
+                <div key={campo.id} className="tu-info__item">
+                  <dt className="rotulo">{campo.etiqueta}</dt>
+                  <dd>{branding[campo.id]}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
+        </div>
+      </section>
+
+      <section className="tu-info__seccion">
+        <div className="tu-info__seccion-titulo">
           <h2>Mis productos</h2>
           <button type="button" className="btn btn--enlace btn--chico" onClick={() => setPantalla('todos-productos')}>
             Ver todos
           </button>
         </div>
 
-        <div className="tarjeta tu-info__card">
-          <CarruselProductos productos={productos} onVerProducto={verProducto} />
-        </div>
+        <CarruselProductos productos={productos} onVerProducto={verProducto} />
 
         <button type="button" className="btn btn--principal tu-info__agregar-producto">
           Agregar producto

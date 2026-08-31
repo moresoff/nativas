@@ -29,6 +29,19 @@ export const visionMarca =
 
 export const fotoEquipoNegocio = fotoEquipo
 
+/* Branding — para que las campañas que arma la IA no salgan genéricas:
+   necesita saber no solo qué vende Van Luz, sino cómo suena y qué
+   evitar. Editable con el mismo patrón que "Datos del negocio". */
+export const branding = {
+  paleta: [
+    { nombre: 'Azul Van Luz', hex: '#0B3C8C' },
+    { nombre: 'Amarillo seguridad', hex: '#F5C518' },
+    { nombre: 'Gris grafito', hex: '#2E3238' },
+  ],
+  tono: 'Directo y técnico, sin vueltas — como un electricista con experiencia explicándole a otro. Números concretos (48 horas, 8 años en el barrio) en vez de adjetivos vacíos.',
+  queEvitar: 'Evitar frases genéricas de "la mejor calidad" sin respaldo, evitar imágenes de stock que no sean de instalaciones reales, y evitar sonar como una casa de electrodomésticos — Van Luz le habla al que instala, no al que decora.',
+}
+
 /* Catálogo de productos — sirve para nutrir el contexto de las campañas
    (de qué producto hablamos cuando armamos el copy), no es una tienda. */
 export const productos = [
@@ -41,6 +54,8 @@ export const productos = [
     specs: ['Zócalo E27', 'Luz cálida 3000K', '9W ≈ 60W incandescente'],
     foto: fotoProducto1,
     usosEnCampanas: 12,
+    precio: '$4.300',
+    stock: 156,
   },
   {
     id: 'p2',
@@ -51,6 +66,8 @@ export const productos = [
     specs: ['3 luces', 'Zócalo E27 c/u', 'Altura de cable regulable'],
     foto: fotoProducto2,
     usosEnCampanas: 3,
+    precio: '$38.900',
+    stock: 22,
   },
   {
     id: 'p3',
@@ -61,6 +78,8 @@ export const productos = [
     specs: ['Altura 150 cm', 'Zócalo E27', 'Pantalla de tela plisada'],
     foto: fotoProducto3,
     usosEnCampanas: 1,
+    precio: '$52.500',
+    stock: 9,
   },
   {
     id: 'p4',
@@ -71,6 +90,8 @@ export const productos = [
     specs: ['Base de madera maciza', 'Pantalla plisada', 'Zócalo E27'],
     foto: fotoProducto4,
     usosEnCampanas: 5,
+    precio: '$29.900',
+    stock: 31,
   },
   {
     id: 'p5',
@@ -81,6 +102,8 @@ export const productos = [
     specs: ['Zócalo E27', 'Cable negro 1,5 m', 'Pantalla de madera'],
     foto: fotoProducto5,
     usosEnCampanas: 0,
+    precio: '$24.600',
+    stock: 47,
   },
 ]
 
@@ -93,9 +116,9 @@ export const resultados = [
     nombre: 'Resumen general',
     sub: 'Últimos 30 días',
     metricas: [
-      { etiqueta: 'Nuevas ventas', valor: '176', variacion: '+12%', sube: true },
-      { etiqueta: 'Campañas realizadas', valor: '13', variacion: '+2', sube: true },
-      { etiqueta: 'Conversión', valor: '67%', variacion: '−3%', sube: false },
+      { etiqueta: 'Nuevas ventas', valor: '176', variacion: '+12%', tendencia: 'sube' },
+      { etiqueta: 'Campañas realizadas', valor: '13', variacion: '+2', tendencia: 'sube' },
+      { etiqueta: 'Conversión', valor: '67%', variacion: '−3%', tendencia: 'baja' },
     ],
   },
   {
@@ -103,9 +126,9 @@ export const resultados = [
     nombre: 'Promo electricistas — abril',
     sub: 'Campaña activa',
     metricas: [
-      { etiqueta: 'Consultas nuevas', valor: '48', variacion: '+12%', sube: true },
-      { etiqueta: 'Alcance', valor: '3.240', variacion: '+8%', sube: true },
-      { etiqueta: 'Costo por consulta', valor: '$610', variacion: '−15%', sube: true },
+      { etiqueta: 'Consultas nuevas', valor: '48', variacion: '+12%', tendencia: 'sube' },
+      { etiqueta: 'Alcance', valor: '3.240', variacion: '+8%', tendencia: 'sube' },
+      { etiqueta: 'Costo por consulta', valor: '$610', variacion: '−15%', tendencia: 'sube' },
     ],
   },
   {
@@ -113,9 +136,9 @@ export const resultados = [
     nombre: 'Liquidación fin de año',
     sub: 'Campaña finalizada · diciembre 2025',
     metricas: [
-      { etiqueta: 'Ventas generadas', valor: '62', variacion: '+20%', sube: true },
-      { etiqueta: 'Alcance', valor: '5.180', variacion: '+4%', sube: true },
-      { etiqueta: 'Conversión', valor: '11%', variacion: '−1%', sube: false },
+      { etiqueta: 'Ventas generadas', valor: '62', variacion: '+20%', tendencia: 'sube' },
+      { etiqueta: 'Alcance', valor: '5.180', variacion: '+1%', tendencia: 'neutral' },
+      { etiqueta: 'Conversión', valor: '11%', variacion: '−1%', tendencia: 'baja' },
     ],
   },
 ]
@@ -128,6 +151,16 @@ export const campanas = [
     estado: 'activa',
     resultado: '48 consultas nuevas',
     foto: fotoEjemplo1,
+    segmento: 'Electricistas del conurbano sur',
+    objetivo: 'Más ventas',
+    transmite: 'Confianza y experiencia',
+    formatos: ['Post cuadrado (1:1)', 'Historia (9:16)'],
+    fecha: '1 de abril de 2026',
+    segmento: 'Electricistas matriculados de 28 a 55 años, con obra en curso, en Lomas de Zamora, Quilmes y Avellaneda.',
+    copy:
+      '¿Sos electricista y comprás por volumen? En Van Luz tenés stock permanente de cable, canalización y accesorios, con entrega en 48 horas en todo el conurbano sur. Pedí tu presupuesto hoy.',
+    tyc:
+      'Promoción válida del 1 al 30 de abril de 2026 en compras superiores a $150.000. Entrega en 48 horas sujeta a stock disponible en el momento de la compra. No acumulable con otras promociones vigentes.',
   },
   {
     id: 2,
@@ -136,6 +169,15 @@ export const campanas = [
     estado: 'lista',
     resultado: 'Lista para lanzar',
     foto: fotoEjemplo2,
+    segmento: 'Electricistas e instaladores de todo AMBA',
+    objetivo: 'Más ventas',
+    transmite: 'Urgencia, que actúen ya',
+    formatos: ['Post cuadrado (1:1)', 'Banner horizontal (16:9)'],
+    fecha: '18 de marzo de 2026',
+    copy:
+      'Liquidación de cable unipolar: precios de una sola vez en 1,5mm², 2,5mm² y 4mm², con stock para entrega inmediata. Aprovechá antes de que se termine — escribinos y te reservamos tu pedido.',
+    tyc:
+      'Promoción válida desde el 20 de marzo de 2026 y mientras dure el stock disponible. Precios especiales solo para las medidas y cantidades publicadas. No acumulable con otras promociones vigentes.',
   },
   {
     id: 3,
@@ -144,20 +186,90 @@ export const campanas = [
     estado: 'borrador',
     resultado: 'Falta revisar los T&C',
     foto: fotoEjemplo3,
+    segmento: 'Electricistas de la zona sur',
+    objetivo: 'Más reconocimiento de marca',
+    transmite: 'Confianza y experiencia',
+    formatos: ['Historia (9:16)'],
+    fecha: '2 de agosto de 2026',
+    copy:
+      'Hace 8 años sostenemos obras en la zona sur: cable, canalización y accesorios con entrega en 48 horas, sin vueltas. Conocé a Van Luz.',
+    tyc:
+      'Borrador — términos y condiciones todavía sin definir. Falta confirmar vigencia y alcance geográfico antes de lanzar.',
   },
 ]
 
-export const sugerencias = [
+/* Ideación: todo lo que puede terminar siendo una campaña, en un solo
+   lugar — fechas clave que recomienda Pautia, sugerencias de la IA e
+   ideas que suma la persona a mano. El "origen" es lo que las
+   distingue (chip y color en el calendario); `fecha` es opcional —
+   una idea sin fecha simplemente no aparece en el calendario. */
+export const ideas = [
   {
-    id: 's1',
-    titulo: 'Campaña para el Día del Electricista',
-    motivo:
-      'Falta un mes y es la fecha con más movimiento del rubro según tus ventas del año pasado.',
+    id: 'idea-1',
+    titulo: 'Día del Electricista',
+    motivo: 'Es la fecha con más movimiento del rubro según tus ventas del año pasado.',
+    origen: 'fecha-clave',
+    fecha: '2026-09-13',
   },
   {
-    id: 's2',
+    id: 'idea-2',
     titulo: 'Recuperar clientes que no compran hace 3 meses',
-    motivo:
-      'Tenés 34 clientes en esa situación. Suelen volver con una promo de reposición.',
+    motivo: 'Tenés 34 clientes en esa situación. Suelen volver con una promo de reposición.',
+    origen: 'sugerencia-ia',
+    fecha: null,
+  },
+  {
+    id: 'idea-3',
+    titulo: 'Liquidación de stock de colgantes',
+    motivo: 'Tenés 22 unidades del colgante triple cónico hace más de 2 meses sin rotar.',
+    origen: 'sugerencia-ia',
+    fecha: '2026-09-05',
+  },
+  {
+    id: 'idea-4',
+    titulo: 'Día de la Industria',
+    motivo: 'Fecha relevante para tu público de electricistas e instaladores.',
+    origen: 'fecha-clave',
+    fecha: '2026-09-02',
+  },
+  {
+    id: 'idea-5',
+    titulo: 'Combo cable + canalización para obras nuevas',
+    motivo: 'Idea propia: armar un combo para captar obras que arrancan en primavera.',
+    origen: 'propia',
+    fecha: '2026-09-20',
+  },
+]
+
+/* Tendencias e inspiración — simuladas como si vinieran de fuentes
+   como Meta Ads. No hay integración real: es contenido de referencia
+   para inspirar el próximo copy, aclarado como simulado en pantalla. */
+export const tendenciasMeta = [
+  {
+    id: 't1',
+    titulo: 'Videos cortos con antes/después de instalación',
+    descripcion:
+      'Los distribuidores de materiales de construcción ven mejor rendimiento con clips de 15-20 segundos mostrando la obra terminada, más que fotos de producto solas.',
+    detalle:
+      'Funciona mejor cuando el "antes" dura menos de 3 segundos y el corte al "después" es directo, sin transición — la comparación tiene que leerse de un vistazo. Agregar el nombre del barrio o la zona en el texto superpuesto sube el reconocimiento local.',
+    formato: 'Historia (9:16)',
+  },
+  {
+    id: 't2',
+    titulo: 'Carruseles de "antes de que se te acabe el stock"',
+    descripcion:
+      'Formato de urgencia con carrusel de 3-4 productos — buen desempeño en rubros de insumos con stock limitado.',
+    detalle:
+      'La primera tarjeta del carrusel es la que más pesa: funciona mejor con el producto más buscado del lote, no con el de menor stock. Mencionar una fecha límite concreta (no solo "por tiempo limitado") mejora la tasa de clics.',
+    formato: 'Post cuadrado (1:1)',
+  },
+  {
+    id: 't3',
+    titulo: 'Testimonios cortos de electricistas matriculados',
+    descripcion:
+      'Contenido con caras reales del rubro genera más confianza que las piezas 100% de producto.',
+    detalle:
+      'Los mejores resultados vienen de testimonios grabados en la obra, no en estudio — el ruido de fondo y las manos con guantes de trabajo suman credibilidad en vez de restarla. Un testimonio de 20-30 segundos rinde mejor que uno más largo.',
+    formato: 'Banner horizontal (16:9)',
   },
 ]

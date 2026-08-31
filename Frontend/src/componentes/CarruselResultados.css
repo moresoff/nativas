@@ -104,10 +104,11 @@
 .carrusel__variacion {
   font: var(--t-small);
   font-weight: 600;
-  color: var(--ok-sobre-saturado);
   margin: 0;
 }
-.carrusel__variacion--baja { color: var(--err-sobre-saturado); }
+.carrusel__variacion--sube    { color: var(--ok-sobre-saturado); }
+.carrusel__variacion--neutral { color: var(--neutral-sobre-saturado); }
+.carrusel__variacion--baja    { color: var(--accent-2-sobre-saturado); }
 
 /* --- Puntos: siempre abajo del todo, centrados --- */
 .carrusel__puntos {

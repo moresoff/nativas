@@ -1,0 +1,210 @@
+.ideacion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-6);
+}
+
+.ideacion__encabezado {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  padding-top: var(--s-3);
+}
+.ideacion__volver { align-self: flex-start; padding-left: 0; }
+.ideacion__encabezado h1 { font: var(--t-h1); }
+
+.ideacion__bajada {
+  font: var(--t-body);
+  color: var(--ink-2);
+  max-width: var(--lectura);
+  margin: 0;
+}
+
+/* --- Sección de ideas: a lo ancho de la página, tarjeta de alta +
+   grilla arriba del calendario (que va debajo, también a lo ancho) --- */
+.ideacion__panel { display: flex; flex-direction: column; gap: var(--s-4); }
+
+.ideacion__panel-encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+}
+.ideacion__panel-encabezado h2 { font: var(--t-h3); margin: 0; }
+
+.ideacion__campo-fecha {
+  flex-shrink: 0;
+  font: var(--t-ui);
+  font-size: 14px;
+  color: var(--ink-2);
+  padding: 9px var(--s-3);
+  border-radius: var(--r-pill);
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+}
+.ideacion__campo-fecha:focus-visible { outline: none; border-color: var(--accent-2); box-shadow: 0 0 0 3px var(--accent-2-soft); }
+
+/* --- Filtro por origen + orden --- */
+.ideacion__controles {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+}
+
+.ideacion__filtros { display: flex; gap: var(--s-2); flex-wrap: wrap; }
+
+.ideacion__filtro {
+  border: 0;
+  cursor: pointer;
+  background: var(--bg);
+  color: var(--ink-3);
+}
+.ideacion__filtro:hover { color: var(--ink-2); }
+.ideacion__filtro--activo { background: var(--ink); color: #fff; }
+
+.ideacion__orden {
+  flex-shrink: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  font: var(--t-ui);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+  background: var(--surface-2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%236B7280' stroke-width='1.6'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E") no-repeat right 12px center;
+  background-size: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  padding: 6px 32px 6px 16px;
+  cursor: pointer;
+}
+.ideacion__orden:hover { border-color: var(--accent-2); }
+
+.ideacion__lista-vacia { grid-column: 1 / -1; font: var(--t-small); color: var(--ink-3); margin: 0; }
+
+/* --- Grid de tarjetas de idea: a lo ancho de la página, tantas
+   columnas como entren, sin scroll propio (la página entera
+   scrollea, como en la referencia) --- */
+.ideacion__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--s-3);
+}
+
+.ideacion__idea {
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: var(--s-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+}
+
+/* --- Tarjeta de alta: colapsada es un "+", clickeada se abre en un
+   formulario con nombre arriba y descripción abajo --- */
+.ideacion__crear-boton {
+  width: 100%;
+  min-height: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-1);
+  border: 1.5px dashed var(--line);
+  border-radius: var(--r-md);
+  background: none;
+  color: var(--ink-3);
+  font: var(--t-ui);
+  font-size: 14.5px;
+  cursor: pointer;
+}
+.ideacion__crear-boton:hover { border-color: var(--accent-2); color: var(--accent-2); background: var(--accent-2-soft); }
+.ideacion__crear-boton:focus-visible { outline: 3px solid var(--accent-2); outline-offset: 2px; }
+
+.ideacion__crear-icono { font-size: 22px; line-height: 1; color: var(--accent-2); }
+
+.ideacion__crear.ideacion__idea { border-style: dashed; }
+.ideacion__crear-form { display: flex; flex-direction: column; gap: var(--s-2); }
+
+.ideacion__crear-nombre {
+  font: var(--t-ui);
+  font-size: 15px;
+  color: var(--ink);
+  border: 0;
+  border-bottom: 1.5px solid var(--line);
+  padding: var(--s-1) 0;
+  background: none;
+}
+.ideacion__crear-nombre::placeholder { color: var(--ink-3); }
+.ideacion__crear-nombre:focus-visible { outline: none; border-color: var(--accent-2); }
+
+.ideacion__crear-descripcion {
+  font: var(--t-small);
+  font-size: 14px;
+  color: var(--ink-2);
+  resize: vertical;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: var(--s-2);
+  background: var(--bg);
+  font-family: var(--font);
+}
+.ideacion__crear-descripcion::placeholder { color: var(--ink-3); }
+.ideacion__crear-descripcion:focus-visible { outline: none; border-color: var(--accent-2); box-shadow: 0 0 0 3px var(--accent-2-soft); }
+
+.ideacion__idea-encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-2);
+}
+
+.ideacion__idea-fecha { font: var(--t-small); font-size: 12.5px; color: var(--ink-3); }
+.ideacion__idea-titulo { font: var(--t-ui); font-size: 15.5px; color: var(--ink); margin: var(--s-1) 0 0; }
+.ideacion__idea-motivo { font: var(--t-small); color: var(--ink-2); margin: 0; }
+
+.ideacion__idea-acciones {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--s-1) var(--s-3);
+  margin-top: var(--s-2);
+}
+.ideacion__idea-cta { padding-left: 0; }
+
+/* --- Edición in-situ de una idea --- */
+.ideacion__idea-edicion { display: flex; flex-direction: column; gap: var(--s-2); }
+.ideacion__campo-edicion {
+  font: var(--t-small);
+  font-size: 14px;
+  padding: 7px var(--s-3);
+  border-radius: var(--r-sm);
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+}
+.ideacion__campo-edicion:focus-visible { outline: none; border-color: var(--accent-2); box-shadow: 0 0 0 3px var(--accent-2-soft); }
+
+/* --- Tendencias --- */
+.ideacion__tendencias { display: flex; flex-direction: column; gap: var(--s-2); }
+.ideacion__tendencias h2 { font: var(--t-h2); margin: 0; }
+.ideacion__tendencias-bajada { font: var(--t-small); color: var(--ink-3); margin: 0 0 var(--s-2); }
+
+.ideacion__tendencias-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--s-4);
+}
+
+.ideacion__tendencia { display: flex; flex-direction: column; gap: var(--s-2); }
+.ideacion__tendencia h3 { font: var(--t-h3); font-size: 17px; margin: var(--s-1) 0 0; }
+.ideacion__tendencia p { font: var(--t-small); color: var(--ink-2); margin: 0; }
+.ideacion__tendencia-detalle { padding-top: var(--s-1); border-top: 1px dashed var(--line); }
+.ideacion__tendencia-vermas { align-self: flex-start; padding-left: 0; }
+.ideacion__tendencia-formato { color: var(--ink-3); margin: var(--s-1) 0 0; }
+

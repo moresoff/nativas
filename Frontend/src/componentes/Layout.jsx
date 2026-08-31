@@ -3,20 +3,23 @@ import './Layout.css'
 const MENU = [
   { id: 'home', etiqueta: 'Home' },
   { id: 'campanas', etiqueta: 'Campañas' },
+  { id: 'ideacion', etiqueta: 'Ideación' },
   { id: 'reportes', etiqueta: 'Reportes' },
   { id: 'info', etiqueta: 'Tu info' },
-  { id: 'faq', etiqueta: 'Preguntas frecuentes' },
 ]
 
 /* Estructura que se repite en todas las pantallas:
    barra lateral a la izquierda, barra superior arriba, contenido en el medio.
-   Solo "Home" navega de verdad por ahora — el resto de las pantallas
-   todavía no existen, quedan como referencia visual del menú completo. */
-export default function Layout({ activa = 'home', onIrHome, onIrInfo, pantallaCompleta = false, children }) {
+   Orden del menú por prioridad de uso: primero lo operativo (campañas
+   activas, con plata en juego), después lo de planificación (ideación),
+   después medición y por último lo que se toca con menos frecuencia. */
+export default function Layout({ activa = 'home', onIrHome, onIrIdeacion, onIrCampanas, onIrReportes, onIrInfo, pantallaCompleta = false, children }) {
   return (
     <div className="layout">
       <aside className="lateral">
-        <div className="lateral__marca">Pautia</div>
+        <div className="lateral__marca">
+          Paut<span className="lateral__marca-i">i</span><span className="lateral__marca-a">a</span>
+        </div>
 
         <nav className="lateral__menu" aria-label="Navegación principal">
           {MENU.map((item) => (
@@ -28,6 +31,9 @@ export default function Layout({ activa = 'home', onIrHome, onIrInfo, pantallaCo
               aria-current={item.id === activa ? 'page' : undefined}
               onClick={
                 item.id === 'home' ? onIrHome
+                : item.id === 'ideacion' ? onIrIdeacion
+                : item.id === 'campanas' ? onIrCampanas
+                : item.id === 'reportes' ? onIrReportes
                 : item.id === 'info' ? onIrInfo
                 : undefined
               }

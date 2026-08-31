@@ -27,7 +27,7 @@
   color: var(--ink);
 }
 .todos-productos__buscador::placeholder { color: var(--ink-3); }
-.todos-productos__buscador:focus-visible { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-soft); }
+.todos-productos__buscador:focus-visible { outline: none; border-color: var(--accent-2); box-shadow: 0 0 0 3px var(--accent-2-soft); }
 
 .todos-productos__orden {
   font: var(--t-ui);
@@ -39,7 +39,7 @@
   color: var(--ink);
   cursor: pointer;
 }
-.todos-productos__orden:focus-visible { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-soft); }
+.todos-productos__orden:focus-visible { outline: none; border-color: var(--accent-2); box-shadow: 0 0 0 3px var(--accent-2-soft); }
 
 .todos-productos__vacio { font: var(--t-body); color: var(--ink-2); }
 
@@ -49,32 +49,58 @@
   gap: var(--s-5);
 }
 
+/* Tarjeta blanca: foto contenida arriba (con la categoría como
+   distintivo sobre la imagen) y la info debajo, en el área blanca —
+   así el texto se lee siempre, sea cual sea el fondo de la foto. */
 .todos-productos__item {
-  background: none;
-  border: 0;
-  cursor: pointer;
-  text-align: left;
   display: flex;
   flex-direction: column;
-  gap: var(--s-2);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-1);
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.15s, border-color 0.15s;
 }
-.todos-productos__item:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; border-radius: var(--r-md); }
+.todos-productos__item:hover { transform: translateY(-2px); border-color: var(--accent-2); }
+.todos-productos__item:focus-visible { outline: 3px solid var(--accent-2); outline-offset: 3px; }
 
 .todos-productos__foto-envoltorio {
+  position: relative;
   aspect-ratio: 1 / 1;
-  border-radius: var(--r-md);
-  border: 1px solid var(--line);
   background: var(--bg);
   display: grid;
   place-items: center;
   overflow: hidden;
-  transition: border-color 0.15s;
 }
-.todos-productos__item:hover .todos-productos__foto-envoltorio { border-color: var(--primary); }
-.todos-productos__foto-envoltorio img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+.todos-productos__foto { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
 
-.todos-productos__nombre { font: var(--t-ui); font-size: 15.5px; margin: 0; color: var(--ink); }
-.todos-productos__categoria { font: var(--t-small); color: var(--ink-3); margin: 0; }
+.todos-productos__categoria {
+  position: absolute;
+  top: var(--s-2);
+  left: var(--s-2);
+  font: var(--t-label);
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--primary);
+  background: var(--primary-soft);
+  border-radius: var(--r-pill);
+  padding: 4px 11px;
+}
+
+.todos-productos__texto {
+  padding: var(--s-3) var(--s-3) var(--s-4);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.todos-productos__nombre { font: var(--t-ui); font-size: 15.5px; font-weight: 700; color: var(--ink); margin: 0; }
+.todos-productos__precio { font: var(--t-small); font-size: 13.5px; color: var(--ink-2); margin: 0; }
 
 @media (max-width: 900px) {
   .todos-productos__grid { grid-template-columns: repeat(3, 1fr); }

@@ -1,0 +1,132 @@
+.ficha-campana {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-6);
+  padding-top: var(--s-3);
+}
+
+.ficha-campana__volver { align-self: flex-start; padding-left: 0; }
+
+.ficha-campana__encabezado {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+}
+.ficha-campana__encabezado h1 { font: var(--t-h1); margin: var(--s-2) 0 0; }
+
+.ficha-campana__estado {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  font: var(--t-small);
+  color: var(--ink-3);
+  flex-shrink: 0;
+  padding-top: var(--s-2);
+  margin: 0;
+}
+.ficha-campana__separador { color: var(--line); }
+
+.ficha-campana__principal {
+  display: flex;
+  gap: var(--s-6);
+}
+
+.ficha-campana__galeria {
+  flex: 0 0 380px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+
+.ficha-campana__foto {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+  background: var(--bg);
+  overflow: hidden;
+}
+.ficha-campana__foto img { width: 100%; height: 100%; object-fit: cover; }
+
+.ficha-campana__formatos { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+
+.ficha-campana__datos {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--s-5) var(--s-6);
+  align-content: flex-start;
+  margin: 0;
+  padding-top: var(--s-2);
+}
+.ficha-campana__datos dd { margin: var(--s-1) 0 0; font: var(--t-body); font-size: 16px; color: var(--ink); }
+
+/* --- Piezas por formato: recorte simulado de la misma foto, solo
+   para los formatos que esta campaña eligió usar --- */
+.ficha-campana__formatos-seccion { display: flex; flex-direction: column; gap: var(--s-4); }
+
+.ficha-campana__formatos-encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+}
+.ficha-campana__formatos-encabezado h2 { font: var(--t-h3); margin: 0; }
+
+/* Fila en vez de grilla de columnas iguales: cada recorte tiene la
+   MISMA ALTURA y el ancho lo pone el aspect-ratio — así el formato
+   vertical (Historia 9:16) queda angosto en vez de estirarse tan
+   alto como le permitiría una columna 1fr. */
+.ficha-campana__formatos-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--s-4);
+}
+
+.ficha-campana__formato-item { display: flex; flex-direction: column; gap: var(--s-2); }
+
+.ficha-campana__formato-preview {
+  height: 190px;
+  width: auto;
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  background: var(--bg);
+  overflow: hidden;
+}
+.ficha-campana__formato-preview img { width: 100%; height: 100%; object-fit: cover; }
+
+.ficha-campana__formato-etiqueta { font: var(--t-small); font-size: 13.5px; color: var(--ink-2); margin: 0; }
+
+/* --- Notas al costado del copy/T&C, no arriba de todo --- */
+.ficha-campana__notas-fila {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-5);
+}
+
+.ficha-campana__textos {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+
+.ficha-campana__nota { flex: 0 0 260px; width: 260px; }
+
+@media (max-width: 900px) {
+  .ficha-campana__principal { flex-direction: column; }
+  .ficha-campana__galeria { flex-basis: auto; }
+  .ficha-campana__foto { max-width: 320px; }
+  .ficha-campana__notas-fila { flex-direction: column; }
+  .ficha-campana__nota { width: 100%; max-width: 320px; }
+}
+
+@media (max-width: 480px) {
+  .ficha-campana__formato-preview { height: 150px; }
+}

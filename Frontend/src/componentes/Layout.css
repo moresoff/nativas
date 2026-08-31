@@ -24,6 +24,8 @@
   color: var(--primary);
   padding: var(--s-2) var(--s-3) var(--s-5);
 }
+.lateral__marca-i { color: var(--primary); }
+.lateral__marca-a { color: var(--primary); }
 
 .lateral__menu {
   display: flex;
@@ -43,14 +45,14 @@
   transition: background 0.15s, color 0.15s;
 }
 .lateral__item:hover { background: var(--bg); color: var(--ink); }
-.lateral__item:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+.lateral__item:focus-visible { outline: 3px solid var(--accent-2); outline-offset: 2px; }
 
 .lateral__item--activo {
-  background: var(--primary-soft);
-  color: var(--primary);
+  background: var(--accent-2-soft);
+  color: var(--accent-2-ink);
   font-weight: 700;
 }
-.lateral__item--activo:hover { background: var(--primary-soft); color: var(--primary); }
+.lateral__item--activo:hover { background: var(--accent-2-soft); color: var(--accent-2-ink); }
 
 .lateral__item--pie { margin-top: auto; }
 
@@ -89,20 +91,20 @@
   cursor: pointer;
 }
 .icono:hover { background: var(--bg); }
-.icono:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+.icono:focus-visible { outline: 3px solid var(--accent-2); outline-offset: 2px; }
 
 .perfil {
   width: 40px;
   height: 40px;
   border-radius: var(--r-pill);
   border: 0;
-  background: var(--primary);
+  background: var(--accent-2);
   color: #fff;
   font: var(--t-ui);
   font-size: 14px;
   cursor: pointer;
 }
-.perfil:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
+.perfil:focus-visible { outline: 3px solid var(--accent-2); outline-offset: 3px; }
 
 /* --- Contenido --- */
 .contenido {

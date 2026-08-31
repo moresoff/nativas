@@ -44,8 +44,26 @@
   padding: 0;
   font: var(--t-ui);
   font-size: 14px;
-  color: var(--primary);
+  color: var(--accent-2);
   cursor: pointer;
 }
-.postit__cta:hover { color: var(--primary-hover); }
-.postit__cta:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+.postit__cta:hover { color: var(--accent-2-hover); }
+.postit__cta:focus-visible { outline: 3px solid var(--accent-2); outline-offset: 2px; }
+
+/* --- Variante nota: espacio en blanco editable, sin CTA --- */
+.postit--nota { min-height: 220px; }
+.postit--nota:focus-within { transform: rotate(0deg); }
+
+.postit__textarea {
+  flex-grow: 1;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  resize: none;
+  font: var(--t-small);
+  font-family: var(--font);
+  color: var(--ink-2);
+  outline: none;
+}
+.postit__textarea::placeholder { color: var(--ink-3); }
+.postit__textarea:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; border-radius: 4px; }

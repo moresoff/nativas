@@ -1,7 +1,7 @@
 .bloque-texto {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-left: 4px solid var(--primary);
+  border-left: 4px solid var(--accent);
   border-radius: var(--r-sm);
   padding: var(--s-5) var(--s-5) var(--s-4);
   max-width: var(--lectura);
@@ -13,6 +13,23 @@
   font: var(--t-body);
   color: var(--ink-2);
   margin: 0;
+}
+
+.bloque-texto__campo {
+  width: 100%;
+  font: var(--t-body);
+  font-family: var(--font);
+  color: var(--ink);
+  padding: 10px var(--s-3);
+  border-radius: var(--r-sm);
+  border: 1.5px solid var(--line);
+  background: var(--bg);
+  resize: vertical;
+}
+.bloque-texto__campo:focus-visible {
+  outline: none;
+  border-color: var(--accent-2);
+  box-shadow: 0 0 0 3px var(--accent-2-soft);
 }
 
 .bloque-texto__acciones {

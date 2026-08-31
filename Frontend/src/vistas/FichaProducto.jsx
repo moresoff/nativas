@@ -8,10 +8,14 @@ const leerComoDataURL = (archivo) =>
     lector.readAsDataURL(archivo)
   })
 
+const etiquetaUsos = (n) => (n === 0 ? 'Sin usar todavía' : `${n} ${n === 1 ? 'campaña' : 'campañas'}`)
+
 /* Ficha técnica de un producto del catálogo — la info que nutre el
-   contexto de las campañas. La galería arranca repitiendo la única foto
-   que tenemos (simulado: en el producto real, cada una vendría de una
-   foto distinta), y "Agregar imágenes" sí funciona de verdad — suma las
+   contexto de las campañas. Se agrupa en tarjetas (información,
+   detalles, fotos) tomando como referencia paneles de alta de producto
+   tipo SaaS. La galería arranca repitiendo la única foto que tenemos
+   (simulado: en el producto real, cada una vendría de una foto
+   distinta), y "Agregar imágenes" sí funciona de verdad — suma las
    fotos que elijas a la galería de esta pantalla. */
 export default function FichaProducto({ producto, productos, onVolver, onVerProducto }) {
   const [galeria, setGaleria] = useState([producto.foto, producto.foto, producto.foto, producto.foto])
@@ -35,7 +39,44 @@ export default function FichaProducto({ producto, productos, onVolver, onVerProd
       </button>
 
       <div className="ficha-producto__principal">
-        <div className="ficha-producto__galeria">
+        <div className="ficha-producto__col-info">
+          <div className="tarjeta ficha-producto__card">
+            <h1>{producto.nombre}</h1>
+            <p className="ficha-producto__descripcion">{producto.descripcion}</p>
+
+            <div className="ficha-producto__specs">
+              {producto.specs.map((s) => (
+                <span key={s} className="ficha-producto__spec">{s}</span>
+              ))}
+            </div>
+          </div>
+
+          <div className="tarjeta ficha-producto__card">
+            <p className="ficha-producto__card-titulo">Detalles</p>
+            <div className="ficha-producto__detalles">
+              <div className="ficha-producto__detalle">
+                <p className="rotulo">Categoría</p>
+                <p className="ficha-producto__detalle-valor">{producto.categoria}</p>
+              </div>
+              <div className="ficha-producto__detalle">
+                <p className="rotulo">Precio</p>
+                <p className="ficha-producto__detalle-valor">{producto.precio}</p>
+              </div>
+              <div className="ficha-producto__detalle">
+                <p className="rotulo">Stock</p>
+                <p className="ficha-producto__detalle-valor">{producto.stock} unidades</p>
+              </div>
+              <div className="ficha-producto__detalle">
+                <p className="rotulo">Usado en campañas</p>
+                <p className="ficha-producto__detalle-valor">{etiquetaUsos(producto.usosEnCampanas)}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="tarjeta ficha-producto__card ficha-producto__galeria">
+          <p className="ficha-producto__card-titulo">Fotos</p>
+
           <div className="ficha-producto__foto-grande">
             <img src={galeria[fotoActiva]} alt={producto.nombre} />
           </div>
@@ -75,24 +116,6 @@ export default function FichaProducto({ producto, productos, onVolver, onVerProd
               hidden
             />
           </div>
-
-          <p className="ficha-producto__descripcion">{producto.descripcion}</p>
-        </div>
-
-        <div className="ficha-producto__info">
-          <p className="rotulo">{producto.categoria}</p>
-          <h1>{producto.nombre}</h1>
-
-          <ul className="ficha-producto__specs">
-            {producto.specs.map((s) => (
-              <li key={s}>{s}</li>
-            ))}
-          </ul>
-
-          <p className="ficha-producto__uso">
-            Usado en {producto.usosEnCampanas}{' '}
-            {producto.usosEnCampanas === 1 ? 'campaña' : 'campañas'} hasta ahora.
-          </p>
         </div>
       </div>
 
@@ -110,7 +133,7 @@ export default function FichaProducto({ producto, productos, onVolver, onVerProd
                 <div className="ficha-producto__relacionado-foto">
                   <img src={p.foto} alt="" />
                 </div>
-                <p>{p.nombre}</p>
+                <p className="ficha-producto__relacionado-nombre">{p.nombre}</p>
               </button>
             ))}
           </div>

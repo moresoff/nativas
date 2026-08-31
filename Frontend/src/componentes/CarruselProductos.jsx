@@ -41,10 +41,18 @@ export default function CarruselProductos({ productos, onVerProducto }) {
                 className="carrusel-productos__tarjeta"
                 onClick={() => onVerProducto(p.id)}
               >
-                <div className="carrusel-productos__foto-envoltorio">
-                  <img src={p.foto} alt="" className="carrusel-productos__foto" />
+                <div className="carrusel-productos__caja">
+                  <div className="carrusel-productos__foto-envoltorio">
+                    <img src={p.foto} alt="" className="carrusel-productos__foto" />
+                  </div>
+                  <p className="carrusel-productos__categoria">{p.categoria}</p>
+                  <p className="carrusel-productos__nombre">{p.nombre}</p>
+                  <p className="carrusel-productos__meta">
+                    {p.usosEnCampanas === 0
+                      ? 'Sin usar todavía'
+                      : `Usado en ${p.usosEnCampanas} ${p.usosEnCampanas === 1 ? 'campaña' : 'campañas'}`}
+                  </p>
                 </div>
-                <p className="carrusel-productos__nombre">{p.nombre}</p>
               </button>
             ))}
           </div>

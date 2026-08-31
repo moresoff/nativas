@@ -4,12 +4,14 @@
 **Equipo:** Morena y Asunción
 
 ## 1 · Problema
-1. Segmentan de forma poco criteriosa (por zona/rubro, sin precisión), lo que reduce la efectividad de las campañas.
-2. Desconocen el marco legal de defensa del consumidor al lanzar campañas y promociones.
-3. Gastan en publicidad pagada sin saber si están invirtiendo bien: no logran traducir la inversión en ventas.
+1. Segmentan de forma poco criteriosa (por zona/rubro, o directo al automático de la plataforma, sin precisión), lo que reduce la efectividad de las campañas. Confirmado en perfiles muy distintos: desde Fernando (Van Luz) hasta Iván (Hype Stein), que con un e-commerce sofisticado igual decide sus promociones por necesidad de rotar stock, no por segmentación de clientes.
+2. Desconocen el marco legal de defensa del consumidor al lanzar campañas y promociones. Confirmado incluso en el caso más avanzado del relevamiento (Hype Stein: "no hay un legal ahí de promoción válida hasta tal fecha") y desde el lado agencia (ABN: "que nunca escuché eso") — no es un problema de pymes chicas sin sofisticación, es un hueco transversal.
+3. Gastan en publicidad pagada sin saber si están invirtiendo bien: no logran traducir la inversión en ventas. PrimOffice pasó por 4 agencias con el mismo resultado ("le dimos tiempo... y la colgaban meses y no se hacía nada y seguía gastando plata") antes de traer la pauta adentro — el problema no se resuelve cambiando de agencia.
 
 ## 2 · Segmento de clientes
-PyMEs y emprendimientos que venden producto online, sin un rol de marketing especializado en el equipo, pero que ya destinan algún presupuesto a marketing. El encargado de ventas/comercial (si existe ese rol) o, si no, el dueño mismo — es quien decide y paga. Modelo B2B2C: la pyme le vende a consumidores finales o a un canal especialista/intermediario.
+PyMEs y emprendimientos que venden producto online, sin un rol de marketing especializado en el equipo, pero que ya destinan algún presupuesto a marketing. El encargado de ventas/comercial (si existe ese rol) o, si no, el dueño mismo — es quien decide y paga. Modelo B2B2C: la pyme le vende a consumidores finales o a un canal especialista/intermediario. Esto incluye tanto a quien hoy terceriza en agencia como a quien ya trajo el marketing adentro tras una mala experiencia (PrimOffice) — a ambos les falta lo mismo: segmentación fina y respaldo legal.
+
+**Fuera de segmento (aprendido en el relevamiento):** negocios muy chicos y relacionales, donde la campaña estructurada pesa poco frente al vínculo personal 1 a 1 (caso Flypolo), e instituciones que no venden producto ni corren promociones comerciales (caso FCE/Austral).
 
 ## 3 · Propuesta de valor única
 Pautia le da a la pyme sin experto en marketing, en un solo lugar, segmentación certera, campañas con respaldo legal y control sobre si su gasto en publicidad realmente funciona — sin depender de una agencia que primero tiene que aprender su negocio.
@@ -18,6 +20,7 @@ Pautia le da a la pyme sin experto en marketing, en un solo lugar, segmentación
 1. Concentra en un solo lugar la información del negocio, los productos y los clientes actuales.
 2. Sugiere segmentación y qué tipo de campaña funcionaría mejor, y arma la campaña completa: copy, piezas visuales y términos y condiciones legales.
 3. Se retroalimenta con los resultados de cada campaña lanzada, para mejorar las próximas sugerencias.
+4. Arma un perfil de marca por pyme (tono de voz, identidad visual, buyer persona específico) que alimenta la sugerencia de campaña y el copy generado, para que el resultado no sea un output genérico repetible entre clientes distintos. Validado por Hub Studio (agencia con clientes en rubros muy dispares): sin ese contexto de marca, el contenido generado con IA tiende a verse igual entre cuentas.
 
 ## 5 · Canales
 Redes sociales y contacto 1 a 1 (no masivo), aprovechando la red de contactos propia del equipo: compañeros con emprendimientos y conocidos dueños de pymes. El objetivo es generar confianza antes que alcance.

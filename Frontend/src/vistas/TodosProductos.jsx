@@ -67,10 +67,13 @@ export default function TodosProductos({ productos, onVolver, onVerProducto }) {
               onClick={() => onVerProducto(p.id)}
             >
               <div className="todos-productos__foto-envoltorio">
-                <img src={p.foto} alt="" />
+                <img src={p.foto} alt="" className="todos-productos__foto" />
+                <span className="todos-productos__categoria">{p.categoria}</span>
               </div>
-              <p className="todos-productos__nombre">{p.nombre}</p>
-              <p className="todos-productos__categoria">{p.categoria}</p>
+              <div className="todos-productos__texto">
+                <p className="todos-productos__nombre">{p.nombre}</p>
+                <p className="todos-productos__precio">{p.precio}</p>
+              </div>
             </button>
           ))}
         </div>

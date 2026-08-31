@@ -24,10 +24,15 @@
   --primary-hover:  #0847AD;
   --primary-soft:   #E3EBFC;  /* fondo suave del color principal */
 
-  /* --- Color: acento --- */
-  --accent:       #3B82F6;  /* detalles puntuales: alfiler del post-it, etc. */
-  --accent-soft:  #E8F1FE;
-  --accent-ink:   #1E40AF;  /* texto legible sobre accent-soft */
+  /* --- Color: acento (prueba de paleta, Rubik) --- */
+  --accent:         #CCFF00;  /* lima — detalles puntuales: alfiler del post-it, etc. */
+  --accent-soft:    #F6FFD6;
+  --accent-ink:     #4B5B00;  /* texto legible sobre accent-soft */
+
+  --accent-2:        #DB3396;  /* magenta — segundo acento, botones principales */
+  --accent-2-hover:  #B81F79;
+  --accent-2-soft:   #FBE3F0;
+  --accent-2-ink:    #99215F;  /* texto legible sobre accent-2-soft */
 
   /* --- Color: pasteles de tarjetas de métrica --- */
   --mint:   #DFF0EC;
@@ -52,12 +57,13 @@
   --vidrio-panel-bg:      rgba(255, 255, 255, 0.16);
   --vidrio-panel-borde:   rgba(255, 255, 255, 0.32);
 
-  /* --- Verde / rojo legibles sobre fondos saturados (el panel azul, etc.) --- */
-  --ok-sobre-saturado:  #7CE7B8;
-  --err-sobre-saturado: #FFA99B;
+  /* --- Verde / azul / magenta legibles sobre fondos saturados (el panel azul, etc.) --- */
+  --ok-sobre-saturado:       #7CE7B8;
+  --neutral-sobre-saturado:  #C9DBFF;
+  --accent-2-sobre-saturado: #FF8FC7;
 
   /* --- Tipografía --- */
-  --font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font: "Rubik", system-ui, -apple-system, "Segoe UI", sans-serif;
 
   --t-display: 800 40px/1.15 var(--font);  /* saludo del Home */
   --t-h1:      700 32px/1.2  var(--font);

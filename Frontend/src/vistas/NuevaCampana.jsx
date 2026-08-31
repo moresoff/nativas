@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { pyme } from '../datos/simulados'
 import BloqueTexto from '../componentes/BloqueTexto'
 import fotoEjemplo1 from '../assets/campanas-ejemplo/foto-ejemplo-1.png'
 import fotoEjemplo2 from '../assets/campanas-ejemplo/foto-ejemplo-2.png'
@@ -12,6 +13,7 @@ import './NuevaCampana.css'
 
 const CHIPS_Q1 = ['Electricistas', 'Consumidor final']
 const CHIPS_Q2 = ['Más ventas', 'Más reconocimiento de marca']
+const CHIPS_Q3 = ['Confianza y experiencia', 'Cercanía, atención personalizada', 'Urgencia, que actúen ya']
 const FORMATOS = ['Post cuadrado (1:1)', 'Historia (9:16)', 'Banner horizontal (16:9)']
 
 const PROPUESTA_INICIAL =
@@ -32,7 +34,52 @@ const COPY_GENERADO =
 const TYC_GENERADO =
   'Promoción válida del 1 al 30 de abril de 2026 en compras superiores a $150.000. Entrega en 48 horas sujeta a stock disponible en el momento de la compra. No acumulable con otras promociones vigentes.'
 
+const COPY_AJUSTADO =
+  'Cable, canalización y accesorios con stock permanente — y tu pedido en la puerta de tu obra en 48 horas. Así trabajamos con los electricistas del conurbano sur hace 8 años. Pedí tu presupuesto hoy.'
+
+const TYC_AJUSTADO =
+  'Promoción válida del 1 al 30 de abril de 2026 en compras superiores a $150.000. Entrega en 48 horas sujeta a stock disponible al momento de la compra, dentro del conurbano sur. No acumulable con otras promociones vigentes.'
+
 const EJEMPLO_IDEA = 'Quiero hacer una campaña para aumentar mis ventas'
+
+/* Sugerencias que "arma el agente" antes de que escribas el primer
+   mensaje — mismo criterio que el botón de ejemplo de siempre, pero
+   con varias opciones en vez de una sola. Cualquiera de las 4 sirve
+   como primer mensaje: enviarIdea no distingue de dónde vino el texto. */
+const SUGERENCIAS_INICIALES = [
+  EJEMPLO_IDEA,
+  'Necesito una campaña para el Día del Electricista',
+  'Quiero liquidar stock de cable unipolar',
+  'Quiero que me conozcan los electricistas de la zona sur',
+]
+
+function EmpezarVacio({ nombreNegocio, onSugerencia }) {
+  return (
+    <div className="chat-vacio">
+      <h2 className="chat-vacio__saludo">
+        Hola, {nombreNegocio}
+        <br />
+        ¿Qué campaña armamos hoy?
+      </h2>
+      <p className="chat-vacio__bajada">Elegí una idea para arrancar, o escribí la tuya abajo.</p>
+      <div className="chat-vacio__grid">
+        {SUGERENCIAS_INICIALES.map((texto) => (
+          <button
+            key={texto}
+            type="button"
+            className="chat-vacio__tarjeta"
+            onClick={() => onSugerencia(texto)}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2.5 13.7 9.3 20.5 11 13.7 12.7 12 19.5 10.3 12.7 3.5 11 10.3 9.3Z" />
+            </svg>
+            <span>{texto}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 /* Conversaciones anteriores — datos simulados, todavía no se pueden
    reabrir (no hay guiones escritos para ellas). Están para mostrar
@@ -100,19 +147,25 @@ export default function NuevaCampana({ onVolver }) {
   const [ideaInicial, setIdeaInicial] = useState('')
   const [respQ1, setRespQ1] = useState('')
   const [respQ2, setRespQ2] = useState('')
+  const [respQ3, setRespQ3] = useState('')
   const [huboAjuste, setHuboAjuste] = useState(false)
   const [inputValor, setInputValor] = useState('')
   const [nombreChat, setNombreChat] = useState(NOMBRE_POR_DEFECTO)
   const [editandoNombre, setEditandoNombre] = useState(false)
   const [fotos, setFotos] = useState([])
-  const [formato, setFormato] = useState('')
+  const [formatosSeleccionados, setFormatosSeleccionados] = useState([])
+
+  const [copyTexto, setCopyTexto] = useState(COPY_GENERADO)
+  const [tycTexto, setTycTexto] = useState(TYC_GENERADO)
+  const [huboAjusteCopy, setHuboAjusteCopy] = useState(false)
+  const [ajusteCopyUsuario, setAjusteCopyUsuario] = useState('')
 
   const finRef = useRef(null)
   const archivoRef = useRef(null)
 
   useEffect(() => {
     finRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
-  }, [paso, fotos.length])
+  }, [paso, fotos.length, huboAjusteCopy])
 
   const enviarIdea = (texto) => {
     if (!texto.trim()) return
@@ -121,6 +174,12 @@ export default function NuevaCampana({ onVolver }) {
     setInputValor('')
   }
 
+  /* El campo de escribir libre solo queda habilitado donde el guion
+     realmente puede interpretar texto suelto: las tres preguntas de
+     arranque y la ronda de ajuste del copy. En el resto se avanza con
+     las tarjetas de opciones o los botones de acción. */
+  const puedeEscribirLibre = paso <= 3 || (paso === 6 && !huboAjusteCopy)
+
   const handleEnviar = (e) => {
     e.preventDefault()
     const texto = inputValor.trim()
@@ -128,6 +187,8 @@ export default function NuevaCampana({ onVolver }) {
     if (paso === 0) enviarIdea(texto)
     else if (paso === 1) elegirQ1(texto)
     else if (paso === 2) elegirQ2(texto)
+    else if (paso === 3) elegirQ3(texto)
+    else if (paso === 6 && !huboAjusteCopy) enviarAjusteCopy(texto)
   }
 
   const elegirQ1 = (valor) => {
@@ -142,14 +203,34 @@ export default function NuevaCampana({ onVolver }) {
     setInputValor('')
   }
 
-  const elegirFormato = (valor) => {
-    setFormato(valor)
-    setPaso(8)
+  const elegirQ3 = (valor) => {
+    setRespQ3(valor)
+    setPaso(4)
+    setInputValor('')
+  }
+
+  const enviarAjusteCopy = (texto) => {
+    setAjusteCopyUsuario(texto)
+    setCopyTexto(COPY_AJUSTADO)
+    setTycTexto(TYC_AJUSTADO)
+    setHuboAjusteCopy(true)
+    setInputValor('')
+  }
+
+  const toggleFormato = (valor) => {
+    setFormatosSeleccionados((actuales) =>
+      actuales.includes(valor) ? actuales.filter((f) => f !== valor) : [...actuales, valor]
+    )
+  }
+
+  const confirmarFormatos = (valores) => {
+    setFormatosSeleccionados(valores)
+    setPaso(9)
   }
 
   const usarFotosEjemplo = () => {
     setFotos(FOTOS_EJEMPLO)
-    setPaso(7)
+    setPaso(8)
   }
 
   const handleArchivos = async (e) => {
@@ -164,7 +245,7 @@ export default function NuevaCampana({ onVolver }) {
         url: urls[i],
       }))
     )
-    setPaso(7)
+    setPaso(8)
   }
 
   const reiniciarChat = () => {
@@ -172,12 +253,17 @@ export default function NuevaCampana({ onVolver }) {
     setIdeaInicial('')
     setRespQ1('')
     setRespQ2('')
+    setRespQ3('')
     setHuboAjuste(false)
     setInputValor('')
     setNombreChat(NOMBRE_POR_DEFECTO)
     setEditandoNombre(false)
     setFotos([])
-    setFormato('')
+    setFormatosSeleccionados([])
+    setCopyTexto(COPY_GENERADO)
+    setTycTexto(TYC_GENERADO)
+    setHuboAjusteCopy(false)
+    setAjusteCopyUsuario('')
   }
 
   let tarjeta = null
@@ -197,20 +283,43 @@ export default function NuevaCampana({ onVolver }) {
         permiteTexto
       />
     )
-  } else if (paso === 3 && !huboAjuste) {
+  } else if (paso === 3) {
+    tarjeta = (
+      <TarjetaOpciones
+        opciones={CHIPS_Q3.map((op) => ({ label: op, onClick: () => elegirQ3(op) }))}
+        onSaltear={() => elegirQ3('Salteado')}
+        permiteTexto
+      />
+    )
+  } else if (paso === 4 && !huboAjuste) {
     tarjeta = (
       <TarjetaOpciones
         opciones={[
-          { label: 'Me sirve, seguimos', onClick: () => setPaso(4) },
+          { label: 'Me sirve, seguimos', onClick: () => setPaso(5) },
           { label: 'No me cierra, lo ajusto', onClick: () => setHuboAjuste(true) },
         ]}
       />
     )
-  } else if (paso === 3 && huboAjuste) {
+  } else if (paso === 4 && huboAjuste) {
     tarjeta = (
-      <TarjetaOpciones opciones={[{ label: 'Dale, así sí', onClick: () => setPaso(4) }]} />
+      <TarjetaOpciones opciones={[{ label: 'Dale, así sí', onClick: () => setPaso(5) }]} />
     )
-  } else if (paso === 6) {
+  } else if (paso === 6 && !huboAjusteCopy) {
+    tarjeta = (
+      <TarjetaOpciones
+        opciones={[
+          { label: 'Está perfecto, sigamos', onClick: () => setPaso(7) },
+          { label: 'Que suene más cercano', onClick: () => enviarAjusteCopy('Que suene más cercano') },
+          { label: 'Que tenga más urgencia', onClick: () => enviarAjusteCopy('Que tenga más urgencia') },
+        ]}
+        permiteTexto
+      />
+    )
+  } else if (paso === 6 && huboAjusteCopy) {
+    tarjeta = (
+      <TarjetaOpciones opciones={[{ label: 'Buenísimo, sigamos', onClick: () => setPaso(7) }]} />
+    )
+  } else if (paso === 7) {
     tarjeta = (
       <div className="opciones-card opciones-card--subir">
         <p className="opciones-card__pista opciones-card__pista--activa">
@@ -224,19 +333,52 @@ export default function NuevaCampana({ onVolver }) {
           className="opciones-card__item opciones-card__item--saltear"
           onClick={() => {
             setFotos([])
-            setPaso(7)
+            setPaso(8)
           }}
         >
           <span>Seguir sin fotos</span>
         </button>
       </div>
     )
-  } else if (paso === 7) {
+  } else if (paso === 8) {
     tarjeta = (
-      <TarjetaOpciones
-        opciones={FORMATOS.map((op) => ({ label: op, onClick: () => elegirFormato(op) }))}
-        onSaltear={() => elegirFormato('Salteado')}
-      />
+      <div className="opciones-card">
+        <div className="opciones-card__lista">
+          {FORMATOS.map((op) => {
+            const activo = formatosSeleccionados.includes(op)
+            return (
+              <button
+                key={op}
+                type="button"
+                className={'opciones-card__item' + (activo ? ' opciones-card__item--activo' : '')}
+                onClick={() => toggleFormato(op)}
+                aria-pressed={activo}
+              >
+                <span>{op}</span>
+                <span className="opciones-card__check" aria-hidden="true">✓</span>
+              </button>
+            )
+          })}
+          <button
+            type="button"
+            className="opciones-card__item opciones-card__item--saltear"
+            onClick={() => confirmarFormatos([])}
+          >
+            <span>Saltear</span>
+          </button>
+        </div>
+        <div className="opciones-card__acciones">
+          <p className="opciones-card__pista">Podés elegir más de uno.</p>
+          <button
+            type="button"
+            className="btn btn--principal btn--chico"
+            onClick={() => confirmarFormatos(formatosSeleccionados)}
+            disabled={formatosSeleccionados.length === 0}
+          >
+            Continuar
+          </button>
+        </div>
+      </div>
     )
   }
 
@@ -287,15 +429,19 @@ export default function NuevaCampana({ onVolver }) {
         </div>
 
         <div className="chat-vista__mensajes" aria-live="polite">
-          <div className="burbuja-sistema">
-            ¡Hola! Contame qué campaña tenés en mente y la armamos juntos.
-          </div>
+          {paso === 0 ? (
+            <EmpezarVacio nombreNegocio={pyme.nombre} onSugerencia={enviarIdea} />
+          ) : (
+            <>
+              <div className="burbuja-sistema">
+                ¡Hola! Contame qué campaña tenés en mente y la armamos juntos.
+              </div>
 
-          {paso >= 1 && <div className="burbuja-usuario">{ideaInicial}</div>}
-          {paso >= 1 && (
-            <div className="burbuja-sistema">
-              ¿A quién le vendés más seguido: electricistas o consumidor final?
-            </div>
+              <div className="burbuja-usuario">{ideaInicial}</div>
+              <div className="burbuja-sistema">
+                ¿A quién le vendés más seguido: electricistas o consumidor final?
+              </div>
+            </>
           )}
 
           {paso >= 2 && <div className="burbuja-usuario">{respQ1}</div>}
@@ -304,7 +450,14 @@ export default function NuevaCampana({ onVolver }) {
           )}
 
           {paso >= 3 && <div className="burbuja-usuario">{respQ2}</div>}
-          {paso >= 3 && <div className="burbuja-sistema">{PROPUESTA_INICIAL}</div>}
+          {paso >= 3 && (
+            <div className="burbuja-sistema">
+              ¿Qué querés transmitir con esta campaña? Por ejemplo, confianza, cercanía o urgencia.
+            </div>
+          )}
+
+          {paso >= 4 && <div className="burbuja-usuario">{respQ3}</div>}
+          {paso >= 4 && <div className="burbuja-sistema">{PROPUESTA_INICIAL}</div>}
           {huboAjuste && (
             <>
               <div className="burbuja-usuario">{AJUSTE_USUARIO}</div>
@@ -312,33 +465,38 @@ export default function NuevaCampana({ onVolver }) {
             </>
           )}
 
-          {paso >= 4 && <div className="burbuja-sistema">{RESUMEN}</div>}
-          {paso === 4 && (
-            <button type="button" className="btn btn--principal chat-vista__accion" onClick={() => setPaso(5)}>
+          {paso >= 5 && <div className="burbuja-sistema">{RESUMEN}</div>}
+          {paso === 5 && (
+            <button type="button" className="btn btn--principal chat-vista__accion" onClick={() => setPaso(6)}>
               Generar
             </button>
           )}
 
-          {paso >= 5 && (
+          {paso >= 6 && (
             <>
               <div className="burbuja-sistema">Así quedaría el copy y los términos y condiciones.</div>
-              <BloqueTexto etiqueta="Copy de campaña">{COPY_GENERADO}</BloqueTexto>
-              <BloqueTexto etiqueta="Términos y condiciones">{TYC_GENERADO}</BloqueTexto>
+              <BloqueTexto etiqueta="Copy de campaña" value={copyTexto} onGuardar={setCopyTexto} />
+              <BloqueTexto etiqueta="Términos y condiciones" value={tycTexto} onGuardar={setTycTexto} />
+              <div className="burbuja-sistema">
+                ¿Cómo lo ves? Si querés que ajuste el tono o el mensaje, contame qué cambiarías
+                — también podés tocar "Editar" arriba y corregirlo vos misma.
+              </div>
             </>
           )}
-          {paso === 5 && (
-            <button type="button" className="btn btn--principal chat-vista__accion" onClick={() => setPaso(6)}>
-              Generar imágenes para redes
-            </button>
+          {huboAjusteCopy && (
+            <>
+              <div className="burbuja-usuario">{ajusteCopyUsuario}</div>
+              <div className="burbuja-sistema">Listo, lo ajusté. Fijate cómo quedó arriba.</div>
+            </>
           )}
 
-          {paso >= 6 && (
+          {paso >= 7 && (
             <div className="burbuja-sistema">
               Para armar las piezas para tus redes, subí una o más fotos de tus productos.
             </div>
           )}
 
-          {paso >= 7 && (
+          {paso >= 8 && (
             <div className="burbuja-usuario burbuja-usuario--fotos">
               {fotos.length > 0 ? (
                 <div className="fotos-miniaturas">
@@ -351,14 +509,21 @@ export default function NuevaCampana({ onVolver }) {
               )}
             </div>
           )}
-          {paso >= 7 && <div className="burbuja-sistema">¿En qué formato la vas a usar?</div>}
+          {paso >= 8 && <div className="burbuja-sistema">¿En qué formato la vas a usar? Podés elegir más de uno.</div>}
 
-          {paso >= 8 && <div className="burbuja-usuario">{formato}</div>}
-          {paso >= 8 && (
+          {paso >= 9 && (
+            <div className="burbuja-usuario">
+              {formatosSeleccionados.length > 0 ? formatosSeleccionados.join(' · ') : 'Salteado'}
+            </div>
+          )}
+          {paso >= 9 && (
             <div className="burbuja-sistema">
               {fotos.length > 0 ? (
                 <>
-                  <p className="chat-vista__resultado-titulo">Así quedarían tus piezas, formato {formato}:</p>
+                  <p className="chat-vista__resultado-titulo">
+                    Así quedarían tus piezas, formato{formatosSeleccionados.length > 1 ? 's' : ''}{' '}
+                    {formatosSeleccionados.length > 0 ? formatosSeleccionados.join(' · ') : 'Salteado'}:
+                  </p>
                   <div className="fotos-miniaturas">
                     {fotos.map((f) => (
                       <img key={f.id} src={f.url} alt={f.nombre} className="fotos-miniaturas__img" />
@@ -374,13 +539,13 @@ export default function NuevaCampana({ onVolver }) {
               )}
             </div>
           )}
-          {paso === 8 && (
-            <button type="button" className="btn btn--principal chat-vista__accion" onClick={() => setPaso(9)}>
+          {paso === 9 && (
+            <button type="button" className="btn btn--principal chat-vista__accion" onClick={() => setPaso(10)}>
               Guardar campaña
             </button>
           )}
 
-          {paso >= 9 && (
+          {paso >= 10 && (
             <>
               <div className="burbuja-sistema">
                 ¡Guardada! El repositorio de Campañas todavía no lo construimos — cuando
@@ -402,7 +567,7 @@ export default function NuevaCampana({ onVolver }) {
             type="button"
             className="chat-vista__adjuntar"
             onClick={() => archivoRef.current?.click()}
-            disabled={paso !== 6}
+            disabled={paso !== 7}
             aria-label="Subir fotos"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -424,21 +589,23 @@ export default function NuevaCampana({ onVolver }) {
             placeholder={
               paso === 0
                 ? 'Contame tu idea de campaña…'
-                : paso <= 2
+                : paso <= 3
                 ? 'Escribí tu respuesta o elegí una opción de arriba'
-                : paso === 6
+                : paso === 6 && !huboAjusteCopy
+                ? 'Contame qué le cambiarías, o elegí una opción de arriba'
+                : paso === 7
                 ? 'Subí tus fotos con el ícono de la izquierda'
                 : 'Podés seguir con las opciones de arriba'
             }
             value={inputValor}
             onChange={(e) => setInputValor(e.target.value)}
-            disabled={paso > 2}
+            disabled={!puedeEscribirLibre}
             aria-label="Escribí tu mensaje"
           />
           <button
             type="submit"
             className="chat-vista__enviar"
-            disabled={paso > 2 || !inputValor.trim()}
+            disabled={!puedeEscribirLibre || !inputValor.trim()}
             aria-label="Enviar mensaje"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -446,12 +613,6 @@ export default function NuevaCampana({ onVolver }) {
             </svg>
           </button>
         </form>
-
-        {paso === 0 && (
-          <button type="button" className="btn btn--fantasma btn--chico chat-vista__ejemplo" onClick={() => enviarIdea(EJEMPLO_IDEA)}>
-            Usar ejemplo: “{EJEMPLO_IDEA}”
-          </button>
-        )}
       </div>
     </div>
   )

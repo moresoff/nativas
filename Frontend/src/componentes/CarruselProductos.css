@@ -19,46 +19,50 @@
   place-items: center;
 }
 .carrusel-productos__flecha:hover:not(:disabled) { background: var(--bg); }
-.carrusel-productos__flecha:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+.carrusel-productos__flecha:focus-visible { outline: 3px solid var(--accent-2); outline-offset: 2px; }
 .carrusel-productos__flecha:disabled { color: #C7C1B7; cursor: not-allowed; }
 
 .carrusel-productos__ventana {
   flex: 1;
   overflow: hidden;
-  border-radius: var(--r-md);
 }
 
 .carrusel-productos__pista {
   display: flex;
   transition: transform 0.35s ease;
+  padding: var(--s-2) 0 var(--s-3);
 }
 
 .carrusel-productos__tarjeta {
   flex: 0 0 calc(100% / 3);
   padding: 0 var(--s-2);
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-3);
   background: none;
   border: 0;
   cursor: pointer;
   text-align: left;
 }
-.carrusel-productos__tarjeta:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; border-radius: var(--r-md); }
+.carrusel-productos__tarjeta:focus-visible { outline: 3px solid var(--accent-2); outline-offset: 2px; border-radius: var(--r-lg); }
 
-/* Caja blanca, sin borde en reposo; al pasar el mouse toma el azul
-   principal, para que se note que la foto es "clickeable". */
+.carrusel-productos__caja {
+  display: flex;
+  flex-direction: column;
+  padding: var(--s-3);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-1);
+  transition: transform 0.15s, border-color 0.15s;
+}
+.carrusel-productos__tarjeta:hover .carrusel-productos__caja { transform: translateY(-2px); border-color: var(--accent-2); }
+
 .carrusel-productos__foto-envoltorio {
   aspect-ratio: 1 / 1;
-  border-radius: var(--r-md);
-  border: 1.5px solid var(--line);
-  background: var(--surface);
+  border-radius: var(--r-sm);
+  background: var(--bg);
   display: grid;
   place-items: center;
   overflow: hidden;
-  transition: border-color 0.15s;
 }
-.carrusel-productos__tarjeta:hover .carrusel-productos__foto-envoltorio { border-color: var(--primary); }
 
 .carrusel-productos__foto {
   width: 100%;
@@ -67,11 +71,29 @@
   mix-blend-mode: multiply;
 }
 
+.carrusel-productos__categoria {
+  font: var(--t-label);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent-2-ink);
+  margin: var(--s-3) 0 0;
+}
+
 .carrusel-productos__nombre {
   font: var(--t-ui);
   font-size: 15.5px;
+  font-weight: 700;
   color: var(--ink);
-  margin: 0;
+  margin: 4px 0 0;
+}
+
+.carrusel-productos__meta {
+  font: var(--t-small);
+  font-size: 13px;
+  color: var(--ink-3);
+  margin: 4px 0 0;
 }
 
 @media (max-width: 700px) {

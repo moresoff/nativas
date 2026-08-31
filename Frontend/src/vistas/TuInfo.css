@@ -37,6 +37,25 @@
 .tu-info__item dt { margin: 0 0 var(--s-1); }
 .tu-info__item dd { margin: 0; font: var(--t-body); font-size: 16px; color: var(--ink); }
 
+.tu-info__lista--branding { grid-template-columns: 1fr; }
+
+/* --- Branding: paleta de marca --- */
+.tu-info__paleta {
+  display: flex;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+  margin: 0 0 var(--s-5);
+}
+.tu-info__swatch { display: flex; flex-direction: column; align-items: center; gap: var(--s-1); }
+.tu-info__swatch-color {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line);
+}
+.tu-info__swatch-nombre { font: var(--t-small); font-size: 12.5px; color: var(--ink-2); margin: 0; text-align: center; max-width: 90px; }
+.tu-info__swatch-hex { font: var(--t-label); font-size: 10.5px; color: var(--ink-3); text-transform: uppercase; margin: 0; }
+
 /* --- Edición --- */
 .tu-info__form { display: flex; flex-direction: column; gap: var(--s-4); }
 .tu-info__campo { display: flex; flex-direction: column; gap: var(--s-1); }
@@ -53,8 +72,8 @@
 }
 .tu-info__campo textarea:focus-visible {
   outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px var(--primary-soft);
+  border-color: var(--accent-2);
+  box-shadow: 0 0 0 3px var(--accent-2-soft);
 }
 
 .tu-info__acciones { display: flex; justify-content: flex-end; gap: var(--s-2); }
@@ -114,8 +133,8 @@
 }
 .tu-info__vision-campo:focus-visible {
   outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px var(--primary-soft);
+  border-color: var(--accent-2);
+  box-shadow: 0 0 0 3px var(--accent-2-soft);
 }
 
 .tu-info__vision-foto {

@@ -38,11 +38,11 @@ button { font-family: var(--font); }
   transition: background 0.15s, color 0.15s;
 }
 .btn:focus-visible {
-  outline: 3px solid var(--primary);
+  outline: 3px solid var(--accent-2);
   outline-offset: 3px;
 }
-.btn--principal { background: var(--primary); color: #fff; }
-.btn--principal:hover { background: var(--primary-hover); }
+.btn--principal { background: var(--accent-2); color: #fff; }
+.btn--principal:hover { background: var(--accent-2-hover); }
 
 .btn--secundario {
   background: transparent;
@@ -91,6 +91,9 @@ button { font-family: var(--font); }
 .chip--lista      { background: var(--sky);         color: #1B4A70; }
 .chip--conectado  { background: var(--mint);        color: #14574A; }
 .chip--pendiente  { background: var(--bg);          color: var(--ink-3); }
+.chip--fecha-clave   { background: var(--peach); color: #8A3B1F; }
+.chip--sugerencia-ia { background: var(--accent-2-soft); color: var(--accent-2-ink); }
+.chip--propia        { background: var(--sand); color: #6B5424; }
 
 /* --- Recuadro para foto de campaña: ícono de cámara mientras no hay
    ninguna cargada (borde punteado); si la campaña ya tiene una foto
@@ -115,7 +118,7 @@ button { font-family: var(--font); }
 
 /* --- Chat --- */
 .burbuja-usuario {
-  background: var(--primary);
+  background: var(--accent-2);
   color: #fff;
   border-radius: 18px 18px 4px 18px;
   padding: 12px 18px;

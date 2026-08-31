@@ -1,10 +1,10 @@
-import { pyme, resultados, campanas, sugerencias } from '../datos/simulados'
+import { pyme, resultados, campanas, ideas } from '../datos/simulados'
 import TarjetaCampana from '../componentes/TarjetaCampana'
 import CarruselResultados from '../componentes/CarruselResultados'
 import PostIt from '../componentes/PostIt'
 import './Home.css'
 
-export default function Home({ onNuevaCampana }) {
+export default function Home({ onNuevaCampana, onVerCampanas, onVerIdeacion }) {
   return (
     <div className="home">
       {/* Saludo y acción principal */}
@@ -34,7 +34,7 @@ export default function Home({ onNuevaCampana }) {
       <section className="home__seccion">
         <div className="home__titulo">
           <h2>Tus campañas</h2>
-          <button className="btn btn--fantasma btn--chico">Ver todas</button>
+          <button className="btn btn--fantasma btn--chico" onClick={onVerCampanas}>Ver todas</button>
         </div>
 
         <div className="home__lista">
@@ -48,14 +48,15 @@ export default function Home({ onNuevaCampana }) {
       <section className="home__seccion">
         <div className="home__titulo">
           <h2>Sugerencias para tu negocio</h2>
+          <button className="btn btn--enlace btn--chico" onClick={onVerIdeacion}>Ver todo</button>
         </div>
 
         <div className="home__sugerencias">
-          {sugerencias.map((s, i) => (
+          {ideas.slice(0, 2).map((idea, i) => (
             <PostIt
-              key={s.id}
-              titulo={s.titulo}
-              motivo={s.motivo}
+              key={idea.id}
+              titulo={idea.titulo}
+              motivo={idea.motivo || 'Agregala en Ideación.'}
               giro={i % 2 === 0 ? -1.5 : 1.5}
               onClick={onNuevaCampana}
             />

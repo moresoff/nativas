@@ -9,7 +9,7 @@ const ESTADOS = {
   borrador: { texto: 'Recién arrancando', clase: 'estado-punto--borrador' },
 }
 
-export default function TarjetaCampana({ campana }) {
+export default function TarjetaCampana({ campana, onVer }) {
   const estado = ESTADOS[campana.estado]
 
   return (
@@ -40,7 +40,9 @@ export default function TarjetaCampana({ campana }) {
         </p>
       </div>
 
-      <button className="btn btn--secundario btn--chico">Ir</button>
+      <button type="button" className="btn btn--secundario btn--chico" onClick={() => onVer?.(campana.id)}>
+        Ir
+      </button>
     </article>
   )
 }

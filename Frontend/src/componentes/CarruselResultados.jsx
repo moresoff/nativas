@@ -38,18 +38,13 @@ export default function CarruselResultados({ resultados }) {
 
                 <div className="carrusel__grid">
                   {r.metricas.map((m) => {
-                    const bajo = m.variacion.trim().startsWith('−')
+                    const icono = m.tendencia === 'sube' ? '▲' : m.tendencia === 'baja' ? '▼' : '–'
                     return (
                       <div className="carrusel__metrica" key={m.etiqueta}>
                         <p className="carrusel__etiqueta">{m.etiqueta}</p>
                         <p className="carrusel__valor num">{m.valor}</p>
-                        <p
-                          className={
-                            'carrusel__variacion' +
-                            (m.sube ? '' : ' carrusel__variacion--baja')
-                          }
-                        >
-                          {bajo ? '▼' : '▲'} {m.variacion}
+                        <p className={'carrusel__variacion carrusel__variacion--' + m.tendencia}>
+                          {icono} {m.variacion}
                         </p>
                       </div>
                     )
