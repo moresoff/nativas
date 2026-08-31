@@ -1,0 +1,77 @@
+.vista-previa-anuncio {
+  max-width: 340px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: var(--sh-1);
+}
+
+.vista-previa-anuncio__header {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: var(--s-3) var(--s-4);
+}
+
+.vista-previa-anuncio__avatar {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font: var(--t-ui);
+  font-size: 14px;
+  display: grid;
+  place-items: center;
+}
+
+.vista-previa-anuncio__marca { min-width: 0; }
+.vista-previa-anuncio__nombre {
+  font: var(--t-ui);
+  font-size: 14px;
+  color: var(--ink);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.vista-previa-anuncio__rotulo { font: var(--t-small); font-size: 12px; color: var(--ink-3); margin: 0; }
+
+.vista-previa-anuncio__foto {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--bg);
+}
+.vista-previa-anuncio__foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.vista-previa-anuncio__cuerpo {
+  padding: var(--s-4);
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.vista-previa-anuncio__copy {
+  font: var(--t-small);
+  font-size: 14px;
+  color: var(--ink-2);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.vista-previa-anuncio__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  font: var(--t-ui);
+  font-size: 13.5px;
+  color: var(--primary);
+  margin: 0;
+}

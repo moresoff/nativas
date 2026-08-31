@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import { pyme } from '../datos/simulados'
 import BloqueTexto from '../componentes/BloqueTexto'
 import PostItNota from '../componentes/PostItNota'
+import VistaPreviaAnuncio from '../componentes/VistaPreviaAnuncio'
 import './FichaCampana.css'
 
 const ESTADOS = {
@@ -96,6 +98,14 @@ export default function FichaCampana({ campana, onVolver }) {
             )
           })}
         </div>
+      </div>
+
+      <div className="ficha-campana__preview-seccion">
+        <div className="ficha-campana__formatos-encabezado">
+          <h2>Vista previa del anuncio</h2>
+          <span className="chip chip--pendiente">Simulado</span>
+        </div>
+        <VistaPreviaAnuncio nombreNegocio={pyme.nombre} foto={campana.foto} copy={copy} />
       </div>
 
       <div className="ficha-campana__notas-fila">

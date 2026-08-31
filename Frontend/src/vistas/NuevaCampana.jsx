@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { pyme } from '../datos/simulados'
 import BloqueTexto from '../componentes/BloqueTexto'
+import VistaPreviaAnuncio from '../componentes/VistaPreviaAnuncio'
 import fotoEjemplo1 from '../assets/campanas-ejemplo/foto-ejemplo-1.png'
 import fotoEjemplo2 from '../assets/campanas-ejemplo/foto-ejemplo-2.png'
 import fotoEjemplo3 from '../assets/campanas-ejemplo/foto-ejemplo-3.png'
@@ -529,6 +530,8 @@ export default function NuevaCampana({ onVolver }) {
                       <img key={f.id} src={f.url} alt={f.nombre} className="fotos-miniaturas__img" />
                     ))}
                   </div>
+                  <p className="chat-vista__resultado-titulo">Así se vería el anuncio:</p>
+                  <VistaPreviaAnuncio nombreNegocio={pyme.nombre} foto={fotos[0].url} copy={copyTexto} />
                   <p className="chat-vista__nota-simulada">
                     Simulado: son las mismas fotos que subiste. En el producto real, acá la IA
                     va a generar las piezas nuevas a partir de ellas.

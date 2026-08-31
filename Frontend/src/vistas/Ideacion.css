@@ -92,24 +92,32 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: var(--s-3);
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--s-4);
 }
 
+/* Cada tarjeta lleva el color de su origen (fondo tintado + borde de
+   acento a la izquierda), no solo el chip chico — así se puede escanear
+   la grilla por tipo de idea de un vistazo, con los mismos tokens que
+   ya usan los chips (sin inventar colores nuevos). */
 .ideacion__idea {
   border: 1px solid var(--line);
+  border-left: 4px solid var(--line);
   border-radius: var(--r-md);
-  padding: var(--s-4);
+  padding: var(--s-5);
   display: flex;
   flex-direction: column;
   gap: var(--s-1);
 }
+.ideacion__idea--fecha-clave { background: var(--accent-soft); border-left-color: var(--accent); }
+.ideacion__idea--sugerencia-ia { background: var(--accent-2-soft); border-left-color: var(--accent-2); }
+.ideacion__idea--propia { background: var(--primary-soft); border-left-color: var(--primary); }
 
 /* --- Tarjeta de alta: colapsada es un "+", clickeada se abre en un
    formulario con nombre arriba y descripción abajo --- */
 .ideacion__crear-boton {
   width: 100%;
-  min-height: 96px;
+  min-height: 140px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -165,7 +173,7 @@
 }
 
 .ideacion__idea-fecha { font: var(--t-small); font-size: 12.5px; color: var(--ink-3); }
-.ideacion__idea-titulo { font: var(--t-ui); font-size: 15.5px; color: var(--ink); margin: var(--s-1) 0 0; }
+.ideacion__idea-titulo { font: var(--t-ui); font-size: 16.5px; color: var(--ink); margin: var(--s-1) 0 0; }
 .ideacion__idea-motivo { font: var(--t-small); color: var(--ink-2); margin: 0; }
 
 .ideacion__idea-acciones {
@@ -201,7 +209,16 @@
   gap: var(--s-4);
 }
 
-.ideacion__tendencia { display: flex; flex-direction: column; gap: var(--s-2); }
+/* Franja superior en azul de marca: distingue esta zona (sugerencias
+   de Meta/IA) de las tarjetas de idea de arriba, que tienen su propio
+   esquema de color por origen. */
+.tarjeta.ideacion__tendencia {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  border-top: 4px solid var(--primary);
+  padding-top: var(--s-4);
+}
 .ideacion__tendencia h3 { font: var(--t-h3); font-size: 17px; margin: var(--s-1) 0 0; }
 .ideacion__tendencia p { font: var(--t-small); color: var(--ink-2); margin: 0; }
 .ideacion__tendencia-detalle { padding-top: var(--s-1); border-top: 1px dashed var(--line); }

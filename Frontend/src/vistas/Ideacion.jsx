@@ -222,7 +222,7 @@ export default function Ideacion({ onVolver, onNuevaCampana }) {
               const enEdicion = editandoId === idea.id
 
               return (
-                <li key={idea.id} className="ideacion__idea">
+                <li key={idea.id} className={'ideacion__idea ideacion__idea--' + idea.origen}>
                   {enEdicion ? (
                     <div className="ideacion__idea-edicion">
                       <input

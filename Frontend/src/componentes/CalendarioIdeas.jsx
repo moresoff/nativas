@@ -115,12 +115,18 @@ export default function CalendarioIdeas({ ideas, origenInfo, onQuitarIdea, onAgr
           const ideasDelDiaCelda = celda.fecha ? ideasPorFecha[celda.fecha] ?? [] : []
           const esHoy = celda.fecha === hoyISO
           const esSeleccionada = celda.fecha !== null && celda.fecha === diaSeleccionado
+          // Un solo origen ese día → se pinta toda la celda de su color.
+          // Más de uno → no hay un color único que pintar, se listan los
+          // puntos de cada origen en vez de tapar la celda de un color.
+          const origenesDelDia = [...new Set(ideasDelDiaCelda.map((idea) => idea.origen))]
+          const claseOrigen = origenesDelDia.length === 1 ? ' calendario__celda--' + origenesDelDia[0] : ''
           return (
             <button
               key={i}
               type="button"
               className={
                 'calendario__celda' +
+                claseOrigen +
                 (celda.fueraDeMes ? ' calendario__celda--fuera' : '') +
                 (esHoy ? ' calendario__celda--hoy' : '') +
                 (esSeleccionada ? ' calendario__celda--seleccionada' : '')
@@ -129,7 +135,7 @@ export default function CalendarioIdeas({ ideas, origenInfo, onQuitarIdea, onAgr
               onClick={() => setDiaSeleccionado(celda.fecha === diaSeleccionado ? null : celda.fecha)}
             >
               <span className="calendario__numero">{celda.dia}</span>
-              {ideasDelDiaCelda.length > 0 && (
+              {origenesDelDia.length > 1 && (
                 <span className="calendario__puntos-dia">
                   {ideasDelDiaCelda.slice(0, 3).map((idea) => (
                     <span
@@ -143,6 +149,15 @@ export default function CalendarioIdeas({ ideas, origenInfo, onQuitarIdea, onAgr
             </button>
           )
         })}
+      </div>
+
+      <div className="calendario__leyenda">
+        {Object.entries(origenInfo).map(([origen, info]) => (
+          <span key={origen} className="calendario__leyenda-item">
+            <span className={'calendario__punto calendario__punto--' + origen} aria-hidden="true" />
+            {info.etiqueta}
+          </span>
+        ))}
       </div>
 
       {diaSeleccionado && (

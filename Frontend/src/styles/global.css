@@ -91,9 +91,9 @@ button { font-family: var(--font); }
 .chip--lista      { background: var(--sky);         color: #1B4A70; }
 .chip--conectado  { background: var(--mint);        color: #14574A; }
 .chip--pendiente  { background: var(--bg);          color: var(--ink-3); }
-.chip--fecha-clave   { background: var(--peach); color: #8A3B1F; }
+.chip--fecha-clave   { background: var(--accent-soft); color: var(--accent-ink); }
 .chip--sugerencia-ia { background: var(--accent-2-soft); color: var(--accent-2-ink); }
-.chip--propia        { background: var(--sand); color: #6B5424; }
+.chip--propia        { background: var(--primary-soft); color: var(--primary); }
 
 /* --- Recuadro para foto de campaña: ícono de cámara mientras no hay
    ninguna cargada (borde punteado); si la campaña ya tiene una foto
