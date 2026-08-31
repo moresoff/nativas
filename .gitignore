@@ -1,3 +1,9 @@
 node_modules/
 dist/
 .DS_Store
+
+# Vault y contexto: se versionan solo en la rama local `vault-local`,
+# no se suben al repo publico de GitHub (rama main).
+.obsidian/
+Contexto/
+Wiki/
