@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import Layout from './componentes/Layout'
+import Bienvenida from './vistas/Bienvenida'
+import CrearCuenta from './vistas/CrearCuenta'
+import OnboardingChat from './vistas/OnboardingChat'
 import Home from './vistas/Home'
 import Ideacion from './vistas/Ideacion'
 import NuevaCampana from './vistas/NuevaCampana'
@@ -12,7 +15,8 @@ import Reportes from './vistas/Reportes'
 const ITEM_ACTIVO_POR_VISTA = { home: 'home', ideacion: 'ideacion', campanas: 'campanas', reportes: 'reportes', 'tu-info': 'info' }
 
 export default function App() {
-  const [vista, setVista] = useState('home')
+  const [vista, setVista] = useState('bienvenida')
+  const [nombreNegocioOnboarding, setNombreNegocioOnboarding] = useState('')
 
   const irAHome = () => setVista('home')
   const irAIdeacion = () => setVista('ideacion')
@@ -20,6 +24,22 @@ export default function App() {
   const irATuInfo = () => setVista('tu-info')
   const irACampanas = () => setVista('campanas')
   const irAReportes = () => setVista('reportes')
+
+  const irACrearCuenta = () => setVista('crear-cuenta')
+  const crearCuenta = ({ nombreNegocio }) => {
+    setNombreNegocioOnboarding(nombreNegocio)
+    setVista('onboarding-chat')
+  }
+
+  if (vista === 'bienvenida') {
+    return <Bienvenida onCrearCuenta={irACrearCuenta} />
+  }
+  if (vista === 'crear-cuenta') {
+    return <CrearCuenta onVolver={() => setVista('bienvenida')} onCrear={crearCuenta} />
+  }
+  if (vista === 'onboarding-chat') {
+    return <OnboardingChat nombreNegocio={nombreNegocioOnboarding} onFinalizar={irAHome} />
+  }
 
   return (
     <Layout

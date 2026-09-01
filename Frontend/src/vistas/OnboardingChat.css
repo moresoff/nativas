@@ -1,0 +1,108 @@
+/* El onboarding no vive dentro del Layout con navegación lateral
+   (todavía no hay cuenta armada) — ocupa toda la pantalla, mismo
+   tratamiento visual que el chat de NuevaCampana pero sin historial. */
+.onboarding-chat {
+  height: 100vh;
+  display: flex;
+  background: var(--bg);
+}
+.onboarding-chat .chat-vista { padding-top: var(--s-2); }
+
+/* --- Selector de paleta --- */
+.opciones-card--paleta { padding: var(--s-3); gap: var(--s-3); }
+
+.paleta-picker__form {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.paleta-picker__preview {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-sm);
+  background-image: linear-gradient(45deg, var(--line) 25%, transparent 25%), linear-gradient(-45deg, var(--line) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--line) 75%), linear-gradient(-45deg, transparent 75%, var(--line) 75%);
+  background-size: 10px 10px;
+  background-position: 0 0, 0 5px, 5px -5px, -5px 0;
+}
+
+.paleta-picker__hex {
+  flex: 0 0 96px;
+  font: var(--t-body);
+  font-size: 14.5px;
+  font-family: var(--font);
+  text-transform: uppercase;
+  padding: 9px var(--s-3);
+  border-radius: var(--r-sm);
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+}
+.paleta-picker__hex:focus-visible {
+  outline: none;
+  border-color: var(--accent-2);
+  box-shadow: 0 0 0 3px var(--accent-2-soft);
+}
+
+.paleta-picker__nombre {
+  flex: 1;
+  font: var(--t-body);
+  font-size: 14.5px;
+  font-family: var(--font);
+  padding: 9px var(--s-3);
+  border-radius: var(--r-sm);
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+}
+.paleta-picker__nombre:focus-visible {
+  outline: none;
+  border-color: var(--accent-2);
+  box-shadow: 0 0 0 3px var(--accent-2-soft);
+}
+
+.paleta-picker__lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
+.paleta-picker__swatch {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  padding: var(--s-1) var(--s-2);
+}
+
+.paleta-picker__swatch-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  flex-shrink: 0;
+}
+
+.paleta-picker__swatch-nombre { font: var(--t-small); font-size: 13px; color: var(--ink-2); }
+
+.paleta-picker__swatch-quitar {
+  background: none;
+  border: 0;
+  color: var(--ink-3);
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 0 0 var(--s-1);
+}
+.paleta-picker__swatch-quitar:hover { color: var(--err); }
+
+.paleta-picker__lista--resumen { justify-content: flex-end; }
+.paleta-picker__swatch--chico .paleta-picker__swatch-nombre { color: rgba(255, 255, 255, 0.9); }
+.paleta-picker__lista--resumen .paleta-picker__swatch {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.3);
+}

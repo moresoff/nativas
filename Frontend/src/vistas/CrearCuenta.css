@@ -1,0 +1,45 @@
+.crear-cuenta {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--s-6);
+  background: var(--bg);
+}
+
+.crear-cuenta__tarjeta {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+}
+
+.crear-cuenta__volver {
+  align-self: flex-start;
+  padding-left: 0;
+}
+
+.crear-cuenta__titulo { font: var(--t-h2); color: var(--ink); margin: 0 0 var(--s-1); }
+.crear-cuenta__bajada { font: var(--t-body); color: var(--ink-2); margin: 0; }
+
+.crear-cuenta__form { display: flex; flex-direction: column; gap: var(--s-4); }
+
+.crear-cuenta__campo { display: flex; flex-direction: column; gap: var(--s-1); }
+.crear-cuenta__campo input {
+  font: var(--t-body);
+  font-size: 16px;
+  font-family: var(--font);
+  padding: 11px var(--s-3);
+  border-radius: var(--r-sm);
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+}
+.crear-cuenta__campo input:focus-visible {
+  outline: none;
+  border-color: var(--accent-2);
+  box-shadow: 0 0 0 3px var(--accent-2-soft);
+}
+
+.crear-cuenta__submit { margin-top: var(--s-2); }

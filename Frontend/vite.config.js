@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  server: { port: 5173 },
+  server: { port: Number(process.env.PORT) || 5173 },
   /* Las fotos de ejemplo (datos/simulados.js, NuevaCampana.jsx) pueden pesar
      varios MB. Sin esto, Vite las deja como archivos aparte en dist/assets
      y el HTML de una sola pieza que publicamos como Artifact no puede
